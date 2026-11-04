@@ -1,0 +1,632 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+	
+<div class="row" style="margin-top:-20px;">
+        <div class="col-md-12">
+            <center>
+<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- gst list 1 small -->
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-7485845865785659" data-ad-slot="5628754217"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+            </center>
+        </div>
+    </div>
+<div class="widget widget-summary" id="ContentPlace_trmsg">
+<div class="widget-header">
+    <i class="fa fa-list-alt"></i>
+    <h3>Invoice Summary</h3>
+    <i class="fa drop-down-toggle fa-plus-square" style="float:right;" aria-hidden="true"></i>
+</div>
+<div class="widget-content widget-content-toggle">
+<center>
+    <div class="control-group-search span2" style="float:left; margin-left:20px;">
+        <label class="control-label">Total Transactions</label>
+        <b>71</b>
+    </div>
+    <div class="control-group-search span2" style="float:left; margin-left:20px;">
+        <label class="control-label">Total CGST</label>
+        <b>Rs. &nbsp;1,65,530.45</b>
+    </div>
+    <div class="control-group-search span2" style="float:left; margin-left:20px;">
+        <label class="control-label">Total SGST</label>
+        <b>Rs. &nbsp;1,65,530.45</b>
+    </div>
+    <div class="control-group-search span2" style="float:left; margin-left:20px;">
+        <label class="control-label">Total IGST</label>
+        <b>Rs. &nbsp;0.00</b>
+    </div>
+    <div class="control-group-search span2" style="float:left; margin-left:20px;">
+        <label class="control-label">Total Value</label>
+        <b>Rs. &nbsp;21,92,288.00</b>
+    </div>	
+    </center>
+</div>
+</div> <!-- /widget-content -->
+<div class="row">
+<div class="span12">
+    <form id="list-data-table" name="tabledata" method="post">
+    
+        <div class="widget widget-table action-table">
+            <div class="widget-header"> <i class="fa fa-th-list"></i>
+                <h3>Invoice List</h3>
+                <a href="{% url 'invoiceview' %}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>Add New</a> 
+           </div>
+           <div class="widget-content">
+            <table class="table table-striped table-bordered footable footable-1 breakpoint-lg" data-footable="" data-toggle-column="last" style="display: table;">
+                <thead>
+                    <tr class="footable-header">
+                    
+                        <th style="display: table-cell;"><center>Invoice No</center></th>
+                        <th style="display: table-cell;"><center>Customer Name</center></th>
+                        <th data-breakpoints="md" style="display: table-cell;"><center>Date</center></th>
+                        <th data-breakpoints="xs" style="display: table-cell;"><center>Total</center></th>
+                        <th style="display: table-cell;"><center>Payment Type</center></th>
+                        <th data-breakpoints="sm" style="display: table-cell;"><center>Edit</center></th>
+                        <th data-breakpoints="sm" class="footable-last-visible" style="display: table-cell;"><center>Print</center></th></tr>
+                </thead>
+       			
+
+       
+    </form>
+</div>
+</div>
+
+
+
+<div id="PaymentModal" class="modal fade" role="dialog" style="display: none;">
+<div class="modal-dialog">
+<form class="form-horizontal" method="post" id="PaymentModalForm" novalidate="novalidate">
+<!-- Modal content-->
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h4 class="modal-title">Add Payment Reciept</h4>
+  </div>
+  <div class="modal-body">
+        <fieldset>
+            <div class="control-group">											
+                <label for="name" class="control-label">Payment Date</label>
+                <div class="controls">
+                    <input type="text" name="paymentdate" id="datepicker-1" value="" class="span4 hasDatepicker" autocomplete="off" placeholder="Enter your payment date" required="" aria-required="true">
+                </div> <!-- /controls -->				
+            </div> <!-- /control-group -->
+            
+            <div class="control-group">											
+                <label for="name" class="control-label">Payment Type</label>
+                <div class="controls">
+                    <select name="paymenttype" class="span4" id="paymenttype" required="" aria-required="true">
+                        <option value="cash">Cash</option>
+                        <option value="cash-tds">TDS</option>
+                        <option value="cash-bad-debts-kasar">Bad Debts / Kasar</option>
+                        <option value="cheque">Cheque</option>
+                        <option value="online_transfer">Online/Transfer</option>
+                        <option value="bank_transfer">Bank/Transfer</option>
+                    </select>
+                </div> <!-- /controls -->				
+            </div> <!-- /control-group -->
+            
+            <div class="control-group">											
+                <label for="name" class="control-label">Remaining Amount</label>
+                <div class="controls">
+                    <label for="name" class="control-label remaining-amount"></label>
+                </div> <!-- /controls -->				
+            </div> <!-- /control-group -->
+            
+            <div class="control-group">											
+                <label for="name" class="control-label">Amount</label>
+                <div class="controls">
+                    <input type="text" name="amount" onkeypress="return allowOnlyNumber(event);" id="amount" class="span4" placeholder="Enter your amount" maxlength="50" required="" aria-required="true">
+                </div> <!-- /controls -->				
+            </div> <!-- /control-group -->
+            
+            <div class="control-group">											
+                <label for="name" class="control-label">Payment Note</label>
+                <div class="controls">
+                    <textarea name="payment_note" id="payment_note" value="" class="span4" placeholder="Enter your payment note"></textarea>
+                </div> <!-- /controls -->				
+            </div> <!-- /control-group -->
+        </fieldset>
+    
+  </div>
+  <div class="modal-footer">
+        <input type="hidden" name="invoiceid" id="invoiceid">
+        <input type="hidden" name="uid" id="uid">
+        <input type="hidden" name="company" id="company">
+        <input type="hidden" name="guid" id="guid">
+        <input type="hidden" name="type" id="type">
+        <input type="hidden" name="remaining" id="remaining">
+        
+        <button class="btn btn-primary" name="btnsubmit" type="submit"><i class="fa fa-save"></i>Save</button> 
+        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i>Close</button>
+  </div>
+</div>
+</form>
+</div>
+</div>
+<script>
+$(document).ready(function() {
+
+$( "#PaymentModal form" ).validate({
+    rules: {
+        field: {required: true},
+    },
+    messages: {
+    },
+    submitHandler: function(form) {
+        var amount = $("#PaymentModal form input[name='amount']").val();
+        var remain = $("#PaymentModal form input[name='remaining']").val();
+        if((!(isNaN(amount))) && (!(isNaN(remain))) )
+        {
+            if(parseFloat(amount) > parseFloat(remain))
+            {
+                alert("Amount must be same or less then remaining amount.");
+                return false;
+            }
+        }
+        else
+        {
+            alert("Amount must be valid numeric value.");
+            return false;
+        }
+        
+        var data = {
+            action: 'SubmitPaymentRecieptModel',
+            invoiceid:$("#PaymentModal form input[name='invoiceid']").val(),
+            uid:$("#PaymentModal form input[name='uid']").val(),
+            company:$("#PaymentModal form input[name='company']").val(),
+            paymentdate:$("#PaymentModal form input[name='paymentdate']").val(),
+            paymenttype:$("#PaymentModal form [name='paymenttype']").val(),
+            amount:$("#PaymentModal form input[name='amount']").val(),
+            payment_note:$("#PaymentModal form [name='payment_note']").val(),
+            guid:$("#PaymentModal form input[name='guid']").val(),
+            remaining:$("#PaymentModal form input[name='remaining']").val(),
+            type:$("#PaymentModal form input[name='type']").val()
+        }
+        $.ajax({  
+            type: "POST",  
+            url: "ajaxcall.php",  
+            ContentType : 'application/json',
+            dataType: 'json',
+            data: data,
+            success: function(data){
+                if(data.status == "ALREADY ADDED")
+                {
+                    alert(data.msg);
+                    $( "#PaymentModal form input" ).val('');
+                }
+                else if(data.status == "OK")
+                {
+                    window.location.href = data.redirect;
+        
+                }
+                else if(data.status == "ERROR")
+                {
+                    $(".gogst_popup-content").html(data.msg);
+                    $(".gogst_popup-header").html("Error in Saving Detail");
+                    $('#gogst_popup').popup({
+                        scrolllock: true,
+                        transition: 'all 0.3s'
+                    });
+                    $('#gogst_popup').popup('show');
+                }
+                $('#PaymentModal').modal('toggle');
+            },
+            error: function(data){
+            },
+            complete: function(data){
+            }
+        });
+    }
+});
+$('#PaymentModal').on('show.bs.modal', function (e) {
+    $( "#PaymentModal form input" ).val('');
+    $("#PaymentModal #invoiceid").val($(document.activeElement).attr("data-invoiceid"));
+    $("#PaymentModal #uid").val($(document.activeElement).attr("data-uid"));
+    $("#PaymentModal #company").val($(document.activeElement).attr("data-company"));
+    $("#PaymentModal #guid").val($(document.activeElement).attr("data-guid"));
+    $("#PaymentModal #type").val($(document.activeElement).attr("data-type"));
+    $("#PaymentModal #remaining").val($(document.activeElement).attr("data-remaining"));
+    $("#PaymentModal .remaining-amount").html($(document.activeElement).attr("data-remaining"));
+    $("#PaymentModal #amount").val($(document.activeElement).attr("data-remaining"));
+    
+    $("#PaymentModal #amount").attr("max",$(document.activeElement).attr("data-remaining"));
+    $('#datepicker-1').datepicker('setDate', 'today');
+});
+$( "#datepicker-1" ).datepicker(
+{
+    changeMonth: true,
+    changeYear: true,
+    dateFormat :'dd-M-yy'
+});
+});
+</script><div id="DocumentNoteModal" class="modal fade" role="dialog" style="display: none;">
+<div class="modal-dialog">
+<form class="form-horizontal" method="post" id="PaymentModalForm" novalidate="novalidate">
+<!-- Modal content-->
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h4 class="modal-title">Update Document Note</h4>
+  </div>
+  <div class="modal-body">
+        <fieldset>
+            <div class="control-group">											
+                <label for="name" class="control-label">Document Note</label>
+                <div class="controls">
+                    <textarea name="document_note" id="document_note" class="span4"></textarea>
+                </div> <!-- /controls -->				
+            </div> <!-- /control-group -->
+        </fieldset>
+  </div>
+  <div class="modal-footer">
+        <input type="hidden" name="invoiceid" id="invoiceid">
+        <input type="hidden" name="uid" id="uid">
+        <input type="hidden" name="guid" id="guid">
+        <input type="hidden" name="type" id="type">
+        <button class="btn btn-primary" name="btnsubmit" type="submit"><i class="fa fa-save"></i>Save</button> 
+        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i>Close</button>
+  </div>
+</div>
+</form>
+</div>
+</div>
+<script>
+$(document).ready(function() {
+
+$( "#DocumentNoteModal form" ).validate({
+    rules: {
+        field: {required: true},
+    },
+    messages: {
+    },
+    submitHandler: function(form) {
+        var document_note = $("#DocumentNoteModal form textarea[name='document_note']").val();
+        var data = {
+            action: 'SubmitDocumentNoteModel',
+            invoiceid:$("#DocumentNoteModal form input[name='invoiceid']").val(),
+            uid:$("#DocumentNoteModal form input[name='uid']").val(),
+            document_note:$("#DocumentNoteModal form [name='document_note']").val(),
+            guid:$("#DocumentNoteModal form input[name='guid']").val(),
+            type:$("#DocumentNoteModal form input[name='type']").val()
+        }
+        $.ajax({  
+            type: "POST",  
+            url: "ajaxcall.php",  
+            ContentType : 'application/json',
+            dataType: 'json',
+            data: data,
+            success: function(data){
+                if(data.status == "OK")
+                {
+                    $( ".document_note_update[data-invoiceid="+data.invoiceid+"]" ).parent().find("span").html(data.msg);
+                }
+                else if(data.status == "ERROR")
+                {
+                    $(".gogst_popup-content").html(data.msg);
+                    $(".gogst_popup-header").html("Error in Saving Detail");
+                    $('#gogst_popup').popup({
+                        scrolllock: true,
+                        transition: 'all 0.3s'
+                    });
+                    $('#gogst_popup').popup('show');
+                }
+                $('#DocumentNoteModal').modal('toggle');
+            },
+            error: function(data){
+            },
+            complete: function(data){
+            }
+        });
+    }
+});
+$('#DocumentNoteModal').on('show.bs.modal', function (e) {
+    $( "#DocumentNoteModal form input" ).val('');
+    $("#DocumentNoteModal #invoiceid").val($(document.activeElement).attr("data-invoiceid"));
+    $("#DocumentNoteModal #uid").val($(document.activeElement).attr("data-uid"));
+    $("#DocumentNoteModal #guid").val($(document.activeElement).attr("data-guid"));
+    $("#DocumentNoteModal #type").val($(document.activeElement).attr("data-type"));
+    $("#DocumentNoteModal #document_note").html($(document.activeElement).parent().find("span").html().replace(/<br\s*\/?>/mg,""));
+});
+});
+</script><form class="pdf-download-form" action="ajaxcall3.php" method="post">
+<input type="hidden" value="" name="filename">
+<input type="hidden" value="" name="baseLink">
+<input type="hidden" value="SubmitDownloadPDF" name="action">
+</form>
+<script>
+$(function(){
+$("#myTable .download-btn").click(function(){
+var tr;
+if ($(this).parents('table').hasClass("footable-details")) {
+    tr=$(this).closest('.footable-detail-row');	
+}
+else
+{
+    tr=$(this).closest('tr');
+}
+var billno=tr.find("#billno");
+var options=tr.find("#options");
+var $txtbillno=billno.text();
+var $original=tr.find("#original").is(':checked');
+var $duplicate=tr.find("#duplicate").is(':checked');
+var $transport=tr.find("#transport").is(':checked');
+var $office=tr.find("#office").is(':checked');
+if($original)
+    $original=".original";
+else
+    $original="";
+
+if($duplicate)
+    $duplicate=".duplicate";
+else
+    $duplicate="";
+
+if($transport)
+    $transport=".transport";
+else
+    $transport="";
+
+if($office)
+    $office=".office";
+else
+    $office="";
+    
+if(!$transport&&!$duplicate&&!$original&&!$office)
+{
+    alert("Select atleast one print Option (ex: Original or Office)");
+    return false;
+}
+var name = $(this).attr("data-filename");
+var url = $(this).attr("data-baseLink");
+if(name == "")
+{
+    name = "Invoice.pdf"
+}
+
+$(".pdf-download-form [name='filename']").val(name);
+$(".pdf-download-form [name='baseLink']").val(url);
+$(".pdf-download-form").submit();
+});
+});
+</script> <script>
+$(function () {
+$("#myTable .print-btn,#myTable .email-btn").click(function(e){
+if ($(this).parents('table').hasClass("footable-details")) {
+    var tr=$(this).closest('.footable-detail-row');	
+}
+else
+{
+    var tr=$(this).closest('tr');
+}
+var billno=tr.find("#billno");
+var options=tr.find("#options");
+var $txtbillno=billno.text();
+var $original=tr.find("#original").is(':checked');
+var $duplicate=tr.find("#duplicate").is(':checked');
+var $transport=tr.find("#transport").is(':checked');
+var $office=tr.find("#office").is(':checked');
+if($original)
+    $original=".original";
+else
+    $original="";
+
+if($duplicate)
+    $duplicate=".duplicate";
+else
+    $duplicate="";
+
+if($transport)
+    $transport=".transport";
+else
+    $transport="";
+
+if($office)
+    $office=".office";
+else
+    $office="";
+    
+if(!$transport&&!$duplicate&&!$original&&!$office)
+{
+    alert("Select atleast one print Option (ex: Original or Office)");
+    return false;
+}
+});
+
+$( "#datepicker_start" ).datepicker(
+{
+    changeMonth: true,
+    changeYear: true,
+    dateFormat :'d-M-y',
+    onClose: function( selectedDate ) {
+        $( "#datepicker_end" ).datepicker( "option", "minDate", selectedDate );
+    }
+});
+$( "#datepicker_end" ).datepicker(
+{
+    changeMonth: true,
+    changeYear: true,
+    dateFormat :'d-M-y',
+    onClose: function( selectedDate ) {
+        $( "#datepicker_start" ).datepicker( "option", "maxDate", selectedDate );
+    }
+});
+$('[data-toggle="tooltip"]').tooltip({
+    position: { my: "left+10 center", at: "right center" },
+  content: function() {
+    var element = $( this );
+    return "<div class='tooltipcontent'>"+element.attr( "title" )+"</div>";
+  },
+  tooltipClass: "custom-tooltip-styling"
+});
+
+
+$(".print_selector").change(function(){
+    UpdatePrintButtonLink($(this));
+});
+});
+function UpdatePrintButtonLink(clickedVar){
+var ParentRowBillItem;
+
+if ($(clickedVar).parents('table').hasClass("footable-details")) {
+    ParentRowBillItem = $(clickedVar).closest('.footable-detail-row');	
+}
+else
+{
+    ParentRowBillItem = $(clickedVar).parents(".table-bill-detail-rows");
+}
+
+
+var LinkForButton = $(ParentRowBillItem).find(".print-btn").attr("data-baseLink");
+if($(ParentRowBillItem).find("#original").is(":checked")){
+    LinkForButton += "&original=1";
+}
+if($(ParentRowBillItem).find("#duplicate").is(":checked")){
+    LinkForButton += "&duplicate=1";
+}
+if($(ParentRowBillItem).find("#transport").is(":checked")){
+    LinkForButton += "&transport=1";
+}
+if($(ParentRowBillItem).find("#office").is(":checked")){
+    LinkForButton += "&office=1";
+}
+$(ParentRowBillItem).find(".print-btn").attr("href",LinkForButton);
+
+}
+</script>
+<script>
+$(document).ready(function(){
+$(document).on("click", ".ewayBill", function() {
+
+    var invID = $(this).attr('data-id');
+    if(name == "")
+    {
+        name = "E-WayBill_JSON.json"
+    }
+    var data = {
+        action: 'GenerateEwayBill',
+        filename:name,
+        id:invID
+    }
+    
+    
+    $.ajax({  
+        type: "POST",  
+        url: "ajaxcall.php",  
+        ContentType : 'application/json',
+        dataType: 'json',
+        data: data,
+        success: function(data){
+            if(data.status=='OK')
+            {
+                var blob = new Blob([data.data], { type: 'application/json' });
+                var link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = name;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+            else
+            {
+                $(".gogst_popup-content").html(data.data);
+                $(".gogst_popup-header").html("E-way Bill JSON Error");
+                $('#gogst_popup').popup({
+                    scrolllock: true,
+                    transition: 'all 0.3s'
+                });
+                $('#gogst_popup').popup('show');
+            }
+        },
+        error: function(data){
+        },
+        complete: function(data){
+        }
+    });
+
+    
+}); 
+
+$("#list-data-table [type=submit]").click(function(e) {
+    e.preventDefault();
+    if($(this).val() == "Delete")
+    {
+        if(confirm('Are you sure you want to delete? This action cannot be undone.'))
+        {}
+        else
+        {
+            return false;
+        }
+    }
+    $("#list-data-table [name=form_action]").val($(this).val());
+    $("#list-data-table").submit();
+});
+$("#list-data-table").submit(function(e) {
+    e.preventDefault();
+    $.ajax({
+        type: $(this).attr("method"),
+        data: $(this).serialize(),
+        dataType: 'json',
+        beforeSend: function() {
+            $("body").addClass("is-loading");
+        },
+        success: function(data) {
+            if(data.status=='OK')
+            {
+                window.location.href = data.redirect;
+            }
+            else
+            {
+                $(".gogst_popup-content").html(data.data);
+                $(".gogst_popup-header").html("Error in Completing your request.");
+                $('#gogst_popup').popup({
+                    scrolllock: true,
+                    transition: 'all 0.3s'
+                });
+                $('#gogst_popup').popup('show');
+                $("body").removeClass("is-loading");
+            }
+        },
+        error: function(xhr, status, error) { 
+            var err = xhr.responseText;
+            $(".gogst_popup-content").html(err.Message);
+            $(".gogst_popup-header").html("Error in Completing your request.");
+            $('#gogst_popup').popup({
+                scrolllock: true,
+                transition: 'all 0.3s'
+            });
+            $('#gogst_popup').popup('show');
+            $("body").removeClass("is-loading");
+        },
+        complete: function() {
+            
+        }
+    });
+});
+
+$("input.delall,input[name=del]").change(function() {
+    $(".print-multi-btn").attr("href","MultiPrint.php?print=");
+    var listPrint = "";
+    $("input.delall").each(function() {
+        if ($(this).is(':checked')) {
+            listPrint += $(this).val() + "-";
+            $(".print-multi-btn").attr("href","MultiPrint.php?print=" + listPrint);
+            $(".print-multi-btn").attr("target","_blank");
+        }
+        if(listPrint == "")
+        {
+            $(".print-multi-btn").attr("target","");
+            $(".print-multi-btn").attr("href","#");
+        }
+    });
+    
+});
+
+}); 
+
+</script>
+</div>
+{% endblock %}

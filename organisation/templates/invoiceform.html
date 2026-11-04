@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+	<div class="span12">
+				<div class="widget widget-create-document">
+		
+			</div>
+            <div class="widget-content">
+				<form class="form-horizontal" method="POST">
+					{% csrf_token %}
+				<div class="row">
+					<div class="span5  span-md-5 span-xs-12 span-sm-12"><!-- CompanyDetails-->
+						<div class="widget-header"> <i class="fa fa-th-list"></i><!-- CompanyDetailsHeder -->
+							<h3>Customer Information</h3>
+						</div>
+						<div class="widget-content customer-information-invoice"><!-- /CompanyDetailsContent-->
+											
+								
+						
+							<div class="control-group">
+								<label for="firstname" class="control-label ">M/S.</label>
+								<div class="controls cmp" >
+								<!-- {{ data.Cust_name }} -->
+								
+								<select name="Cust_name">
+									{% for cust1 in cust %}
+									<option value="{{ cust1 }}" >
+										{{ cust1 }}
+									</option>
+									{% endfor %}
+								  </select>
+
+								<div class="customer_outstanding_value"></div>
+								</div> <!--/ms-->
+							
+							</div>
+
+						</div><!-- /CompanyDetailsContent-->
+					</div><!-- /CompanyDetails-->
+						
+					<div class="span7  span-md-7 span-xs-12 span-sm-12"><!-- BillingDetails -->
+							<div class="widget-header"> <i class="fa fa-th-list"></i><!-- CompanyDetailsHeader-->
+								<h3>Invoice Detail</h3>
+							</div>
+							<div class="widget-content invoice-detail-invoice"><!-- CompanyDetailsContent-->
+								<div class="minibox control-group" style="float: none;">
+									<label class="control-label billing-margin-date">Invoice Type</label>
+									<div class="controls cmp">
+										<input type="text" id="id_Invoice_type" name="Invoice_type" value="{{ data.Invoice_type }}">
+									</select>
+									</div>
+								</div>
+															
+							<!-- <div class="minibox control-group">
+								<label class="control-label billing-margin-date">Invoice No.</label>
+								<div class="controls cmp">
+									<input placeholder="Invoice No." name="Invoice_num" id="id_Invoice_num" type="text" value="{{ data.Invoice_num }}">
+																
+								</div>
+							</div>--><!-- bill no  -->
+							
+							<div class="minibox control-group">
+								<label class="control-label billing-margin-date">DATE</label>
+								<div class="controls cmp">
+								<input placeholder="mm/dd/yyyy" name="Date" type="date" id="id_Date" value="{{ data.Date|date:'Y-m-d' }}">
+								</div>
+							</div><!-- date-->
+							
+							<div style="clear:both;"></div>
+
+							
+							<div class="control-group transport-box ">
+								<label for="firstname" class="control-label ">DISPATCH THROUGH</label>
+								<input type="text" id="id_Dispatch_through" name="Dispatch_through" value="{{ data.Dispatch_through }}">
+								
+							</div>
+
+						<!-- CompanyDetailsContent-->
+					<!-- BillingDetails -->
+					<!--class="widget widget-table action-table"-->
+							<div class="row">
+							<div class="span6 span-xs-12  span-md-6 span-sm-6">
+							
+								<div class="control-group" id="due_date">											
+									<label for="check" class="control-label">Due Date</label>
+									<div class="controls">
+										<input placeholder="mm/dd/yyyy" name="Due_date" type="date" id="id_Due_date" value="{{ data.Due_date|date:'Y-m-d' }}">
+									</div> <!-- /controls -->				
+								</div> <!-- /control-group -->
+								
+								<div class="control-group">	
+									<label for="Bank" class="control-label">Bank</label>
+									<div class="controls">
+										<input type="text" id="id_Bank" name="Bank" value="{{ data.Bank }}">
+																						
+										</select>
+									</div> <!-- /controls -->				
+								</div> <!-- /control-group -->
+								
+								<div class="control-group">	
+								
+									
+									
+									<label for="payment" class="control-label">Payment Type</label>
+									<div class="controls">
+									<input type="text" id="id_Payment_type" name="Payment_type" value="{{ data.Payment_type }}">
+																			</div> <!-- /controls -->				
+																	</div> <!-- /control-group -->
+								<div class="control-group" id="check_no">											
+									<label for="check" class="control-label">Payment Note</label>
+									<div class="controls">
+										<textarea id="id_Payment_note" name="Payment_note">{{data.Payment_note}}</textarea>  
+									</div> <!-- /controls -->				
+								</div> <!-- /control-group -->
+
+								
+								<div class="control-group">			
+									<label for="Address" class="control-label">Terms &amp; Condition</label>
+									<div class="controls">
+							<textarea name="T_c" id="id_T_c" placeholder="Enter your terms &amp; condition">{{ data.T_c }}</textarea>
+									</div><!-- /controls -->				
+								</div>
+								
+							</div>
+							
+							<div class="span6 span-xs-12  span-md-6 span-sm-6">
+								<div class="control-group">											
+									<label for="document_note" class="control-label">Document Note / Remarks<span class="note" 
+										style="display:block;">Not Visible on Print</span></label>
+									<div class="controls">
+										<textarea id="id_Document_note" name="Document_note">{{ data.Document_note }}</textarea>  
+									</div> <!-- /controls -->				
+								</div>
+								
+							</div>
+							
+							</div>
+						</div><!---widget content terminated -->
+					
+					</div><!--span12  terminated -->
+					
+					</div>
+					<center>	<button type="submit" class="btn btn-primary" style="float:right;margin-top:10px; ">
+						<i class="fa fa-save"></i>Save</button></center>
+				</form><!--form terminated-->
+			</div><!--row terminated -->
+		</div><!---widget content terminated -->
+	</div><!--span12 terminated -->
+</div>
+{% endblock %}

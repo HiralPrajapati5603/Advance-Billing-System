@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<head>
+    <style>
+        input[type = text]
+        {
+            width: 120px;
+        }
+        input[type = number]
+        {
+            width: 60px;
+        }
+    </style>
+    <!-- Addition script -->
+    <script>
+
+        function calc(){
+            var price = parseFloat(document.getElementById('id_Price').value);
+            var qty = parseFloat(document.getElementById('id_Qty').value);
+            var discount = parseFloat(document.getElementById('id_Discount').value);
+            var cgst = parseFloat(document.getElementById('id_Cgst').value);
+            var igst = parseFloat(document.getElementById('id_Igst').value);
+            var cess = parseFloat(document.getElementById('id_Cess').value);
+            var sgst = parseFloat(document.getElementById('id_Sgst').value);
+            
+            var sub_price = (price * qty)
+
+            var main_tex = (cgst + igst + cess + sgst) 
+            
+            var tex_add = ((sub_price * main_tex) / 100) 
+
+            var main_price = (sub_price + tex_add) 
+
+            var sub_disc = ((main_price * discount) / 100)
+
+            var Final_Total = (main_price - sub_disc)
+
+            document.getElementById('id_Total').value = Final_Total
+
+        }
+
+</script>
+    
+    <!-- ----------------------------------- -->
+</head>
+
+<div class="span12" style="margin-top:10px;">
+    <div class="widget-header"> <i class="fa fa-th-list"></i>
+        <h3>Product Items</h3>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+    
+    <div class="widget-content">
+        <!-- {{ data.Invoice }} -->
+        Invoice No: 
+        <select name="Invoice">
+            {% for cust1 in invo %}
+            <option value="{{ cust1 }}" >
+                {{ cust1 }}
+            </option>
+            {% endfor %}
+          </select>
+
+        <table class="invoice-product-items-table table table-striped table-bordered 
+                                                                 " >
+            <thead>
+                <tr>
+                    <th><center>Product / Other Charges</center></th>
+                    <th><center>HSN/SAC Code</center> </th>
+                    <th><center>Qty.</center> </th>
+                    <th> <center>Price</center> </th>
+                    <th class="discount_field"><center>Disc<br>(Rs)</center> </th>
+                  
+                    <th><center>CGST (Rs)</center> </th>
+                    
+                    <th><center>SGST (Rs)</center> </th>
+                    
+                    <th><center>IGST (Rs)</center> </th>
+                    <th><center>CESS</center> </th>
+                    <th><center>Total</center></th>
+                   
+                </tr> 
+            </thead>
+            <tbody>
+            
+            <tr>
+                   
+                    <td>
+                      <input type="text" name="Product_name" id="id_Product_name" value="{{data.Product_name}}">
+                    </td>
+                    <td>
+                        <input type="text" name="Hsn_code" id="id_Hsn_code" value="{{ data.Hsn_code }}">
+                    </td>
+                    <td>
+                        <input type="number" name="Qty" id="id_Qty" value="{{ data.Qty }}">
+                    </td>
+                    <td>
+                       <input type="number" name="Price" id="id_Price" value="{{ data.Price }}">
+                    </td>
+                    <td class="discount_field">
+                        <input type="number" name="Discount" id="id_Discount" value="{{ data.Discount }}">
+                    </td>
+                    <td>
+                        <input type="number" name="Cgst" id="id_Cgst" value="{{ data.Cgst }}">
+                    </td>
+                    
+                    <td>
+                        <input type="number" name="Sgst" id="id_Sgst" value="{{ data.Sgst }}">
+                    </td>
+                    
+                    <td>
+                        <input type="number" name="Igst" id="id_Igst" value="{{ data.Igst }}">
+                    </td>
+                    
+                    <td>
+                        <input type="number" name="Cess" id="id_Cess" value="{{ data.Cess }}">
+                    </td>
+
+                    <td style="width:90px;">
+                        <center>
+                            <input type="text" name="Total" value="{{ data.Total }}" required="" id="id_Total" readonly = "readonly">
+                        </center>
+                    </td>
+                   
+                </tr>
+            </tbody>
+                
+          
+        </table>
+        
+            <div class="action-btn-container">
+                
+            </div><!--/save&&saveandpdf -->
+            <div class="action-btn-container">
+                <button onclick="calc();" class="btn btn-primary" style="float:right;margin-top:10px;background-color: firebrick; margin-right: 10px "><i class="fa fa-save"></i>Get Total</button>
+                </div>
+        </div>
+        </div>
+    </div><!---widget content terminated -->
+</form>
+</div>
+
+{% endblock %}

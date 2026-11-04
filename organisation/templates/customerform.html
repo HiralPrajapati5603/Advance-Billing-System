@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="main">
+    <div class="main-inner">	
+        <div class="container">
+        <div class="row">
+            <div class="span12">
+                <center>
+        
+                                            <!-- gst header after login -->
+                        <ins class="adsbygoogle" style="display: inline-block; width: 728px; height: 0px;" data-ad-client="ca-pub-7485845865785659" data-ad-slot="9888667777" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display: inline-table; border: none; height: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 728px; background-color: transparent;"><ins id="aswift_0_anchor" style="display: block; border: none; height: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 728px; background-color: transparent; overflow: hidden; opacity: 0;"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;border:0px;width:728px;height:90px;"></iframe></ins></ins></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                                    </center>
+            </div>
+        </div>
+    </div>	
+        <div class="container">
+        
+                    <div class="row">
+                <div class="span12">
+                                    <div class="widget">
+                        <div class="widget-header"> <i class="fa fa-pencil"></i>
+                            <h3>Add Customer / Vendor</h3>
+                        </div>
+                        <div class="widget-content">
+                            <form class="form-horizontal" method="POST">
+                                {% csrf_token %}
+                                <fieldset>
+                                
+                                <div class="main-row"><div class="left-col">
+                                    <!--------------- -------------------------------------------------->
+
+                                    <div class="control-group">											
+                                        <label for="Customer / Vendor Name" class="control-label">Customer / Vendor Name *</label>
+                                        <div class="controls">
+                                            <input type="text" name="cust_name" id="id_cust_name" value="{{data.cust_name}}">
+                                        </div> <!-- /controls -->	
+                                    </div> <!-- /control-group -->
+                                    
+                                    <div class="control-group">											
+                                        <label for="Contact Person" class="control-label">Contact Person *</label>
+                                        <div class="controls">
+                                            <input type="text" name="cont_person" id="id_cont_person" value="{{ data.cont_person }}">
+                                        </div> <!-- /controls -->				
+                                    </div> <!-- /control-group -->
+                                    
+                                    <div class="control-group">											
+                                        <label for="Contact No" class="control-label">Contact No *</label>
+                                        <div class="controls">
+                                            <input type="number" name="contact_num" id="id_contact_num" value="{{ data.contact_num }}">
+                                        </div> <!-- /controls -->				
+                                    </div> <!-- /control-group -->
+                        
+                                    <div class="control-group">											
+                                        <label for="Contact No" class="control-label">Email *</label>
+                                        <div class="controls">
+                                            <input type="text" name="email" id="id_email" value="{{ data.email }}">
+                                        </div> <!-- /controls -->				
+                                    </div> <!-- /control-group -->
+
+                                    <div class="control-group">											
+                                        <label for="Contact No" class="control-label">Company Type *</label>
+                                        <div class="controls">
+                                            <input type="text" name="company_type" id="id_company_type" value="{{ data.company_type }}">
+                                        </div> <!-- /controls -->				
+                                    </div> <!-- /control-group -->
+
+            
+                                    <div class="control-group">											
+                                        <label for="Address" class="control-label">Address 1 *</label>
+                                        <div class="controls">
+                                       <input type="text" name="address" id="id_address" value="{{data.address}}">
+                                        </div> <!-- /controls -->				
+                                    </div> <!-- /control-group -->
+                                    
+                                    <div class="control-group">		
+                                        <label for="Address" class="control-label">Address 2 *</label>
+                                        <div class="controls">
+                                       <input type="text" name="address_2" id="id_address_2" value="{{data.address_2}}">
+                                        </div> <!-- /controls -->				
+                                    </div> <!-- /control-group -->
+                                    
+                                    <div class="control-group">											
+                                        <label for="LandMark" class="control-label">LandMark *</label>
+                                        <div class="controls">
+                                            <input type="text" name="landmark" id="id_landmark" value="{{ data.landmark }}">
+                                        </div> <!-- /controls -->				
+                                    </div> <!-- /control-group -->
+                                    <div class="control-group">
+                                        <label for="Country" class="control-label">Country *</label>
+                                        <div class="controls">
+                                        <input type="text" name="country" id="id_country" value="{{ data.country }}">
+                                        </div> <!-- /controls -->
+                                    </div> <!-- /control-group -->									
+                                    <div class="control-group">											
+                                        <label for="State" class="control-label">State *</label>
+                                        <div class="controls">
+                                        <input type="text" name="state" id="id_state" value="{{ data.state }}">
+                                        </div> <!-- /controls -->				
+                                    </div> <!-- /control-group -->
+                                    
+                                    <div class="control-group">											
+                                        <label for="City" class="control-label">City *</label>
+                                        <div class="controls">
+                                            <input type="text" name="city" id="id_city" value="{{ data.city }}">
+                                        </div> <!-- /controls -->				
+                                    </div> <!-- /control-group -->	
+                                    
+                                   
+                                    
+                                    <div class="control-group hide" id="Vender-detail1">																					<label for="Bank Name" class="control-label">Bank Name</label>										<div class="controls">																						<input type="text" value="" name="bankname" id="bankname" placeholder="Enter bank name" class="span4" maxlength="50">										</div> <!-- /controls -->													</div> <!-- /control-group -->																		<div class="control-group hide" id="Vender-detail2">																					<label for="IFSC Code" class="control-label">Bank IFSC Code</label>										<div class="controls">																						<input type="text" value="" name="ifsccode" id="ifsccode" placeholder="Enter IFSC code" class="span4" maxlength="50">										</div> <!-- /controls -->													</div> <!-- /control-group -->																		<div class="control-group hide" id="Vender-detail3">																					<label for="Account Number" class="control-label">Bank Account Number</label>										<div class="controls">																						<input type="text" value="" name="accountno" id="accountno" placeholder="Enter account number" class="span4" maxlength="50">										</div> <!-- /controls -->													</div> <!-- /control-group -->								
+                                    <div class="control-group">											
+                                        <label for="Pincode" class="control-label">Pincode</label>
+                                        <div class="controls">
+                                        <input type="number" name="pincode" id="id_pincode" value="{{ data.pincode }}">
+                                        </div> <!-- /controls -->				
+                                    </div> <!-- /control-group -->
+                                    
+                                   
+                                    
+                                    </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        
+                                        <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i>Save</button> 
+                                    </div> <!-- /form-actions -->
+                                        
+                                    <!--------------- -------------------------------------------------->
+                                    
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+    
+
+</div> </div> </div>	
+{% endblock %}

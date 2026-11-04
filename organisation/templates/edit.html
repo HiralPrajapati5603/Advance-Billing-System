@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+        <form method="POST" action="/org/update/{{ employee.id }}">
+            {% csrf_token %}
+            <h3>Update Details</h3>
+            <label>Customer Name</label>
+            <input type="text" style=" width: 40%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" name="cust_name" value="{{ employee.cust_name}}"/><br>
+            <label>Contact Person Name:</label>
+            <input type="text" style=" width: 40%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" name="cont_person" value="{{ employee.cont_person}}"/><br>
+            <label>Contact Number:</label>
+            <input type="number" style=" width: 40%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" name="contact_num" value="{{ employee.contact_num}}"/><br>
+            <label>Company Type:</label>
+            <input type="text" style=" width: 40%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" name="company_type" value="{{ employee.company_type}}"/><br>
+            <label>Address:</label>
+            <input type="text" style=" width: 40%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" name="address" value="{{ employee.address}}"/><br>
+            <label>Address Line 2:</label>
+            <input type="text" style=" width: 40%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" name="address_2" value="{{ employee.address_2}}"/><br>
+            <label>Landmark:</label>
+            <input type="text" style=" width: 40%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" name="landmark" value="{{ employee.landmark}}"/><br>
+            <label>Country:</label>
+            <input type="text" style=" width: 40%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" name="country" value="{{ employee.country}}"/><br>
+            <label>State:</label>
+            <input type="text" style=" width: 40%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" name="state" value="{{ employee.state}}"/><br>
+            <label>City:</label>
+            <input type="text" style=" width: 40%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" name="city" value="{{ employee.city}}"/><br>
+            <label>Pincode:</label>
+            <input type="number" style=" width: 40%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" name="pincode" value="{{ employee.pincode}}"/><br>
+
+            <button type="submit">Update</button>
+        </form>
+    {% endblock %}

@@ -1,0 +1,282 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="row">
+	<div class="span12">
+				<div class="widget widget-create-document">
+			<div class="widget-header"> <i class="fa fa-pencil"></i>
+				<h3>INVOICE</h3>
+			</div>
+            <div class="widget-content">
+				<form class="form-horizontal" method="post" action="" id="product_invoice_form" novalidate="novalidate">
+				<div class="row">
+					<div class="span5  span-md-5 span-xs-12 span-sm-12"><!-- CompanyDetails-->
+						<div class="widget-header"> <i class="fa fa-th-list"></i><!-- CompanyDetailsHeder -->
+							<h3>Customer Information</h3>
+						</div>
+						<div class="widget-content customer-information-invoice"><!-- /CompanyDetailsContent-->
+												
+																		
+							<div class="control-group">
+								<label for="firstname" class="control-label ">M/S.</label>
+								<div class="controls cmp" id="companybilling">
+									<input type="hidden" id="hidden-invoice-state">
+									{{ cust.cust_name }}
+									<div class="customer_outstanding_value"></div>
+								</div> <!--/ms-->
+							
+							</div>
+							<div class="control-group">
+								<label for="firstname" class="control-label">ADDRESS</label>
+								<div class="controls cmp">
+									<textarea readonly="true">{{ cust.address }}	</textarea>
+								</div> <!--/address-->
+							
+							</div>
+						
+						</div><!-- /CompanyDetailsContent-->
+					</div><!-- /CompanyDetails-->
+						
+					<div class="span7  span-md-7 span-xs-12 span-sm-12"><!-- BillingDetails -->
+							<div class="widget-header"> <i class="fa fa-th-list"></i><!-- CompanyDetailsHeader-->
+								<h3>Invoice Detail</h3>
+							</div>
+							<div class="widget-content invoice-detail-invoice"><!-- CompanyDetailsContent-->
+							
+															<div class="minibox control-group" style="float: none;">
+									<label class="control-label billing-margin-date">Invoice Type</label>
+									<div class="controls cmp">
+									<input type="text"  class="invoicetype" value="{{ invo.Invoice_type }}" readonly="readonly" >
+								
+									
+									
+									</div>
+								</div>
+															
+							<div class="minibox control-group">
+								<label class="control-label billing-margin-date">Invoice No.</label>
+								<div class="controls cmp">
+																<input type="text" value="{{ invo.Invoice_num }}" class="text-width" readonly = "readonly">
+																
+								</div>
+							</div><!-- bill no-->
+							
+							<div class="minibox control-group">
+								<label class="control-label billing-margin-date">DATE</label>
+								<div class="controls cmp">
+								<input type="text" class="text-width hasDatepicker" value="{{ invo.Date }}" readonly = "readonly">
+								</div>
+							</div><!-- date-->
+							
+							
+
+							<div style="clear:both;"></div>
+
+						
+
+						
+							<div style="clear:both;"></div>
+							
+							
+							
+							<div class="control-group transport-box ">
+								<label for="firstname" class="control-label ">DISPATCH THROUGH</label>
+								<div class="controls ">
+								<input type="text" class="text-width" value="{{ invo.Dispatch_through }}" readonly = "readonly">	
+								</div> 
+								
+							</div>
+							
+						
+
+						</div><!-- CompanyDetailsContent-->
+					</div><!-- BillingDetails -->
+					<!--class="widget widget-table action-table"-->
+					
+					
+						
+					<div class="span12" style="margin-top:10px;">
+						<div class="widget-header"> <i class="fa fa-th-list"></i>
+							<h3>Product Items</h3>
+						</div>
+						<div class="widget-content">
+						
+							<a href="{% url 'productform' %}" class="btn btn-primary btn-small add_product_modal_button" ><i class="fa fa-plus"></i>&nbsp;Add New Product</a>
+							<table class="invoice-product-items-table table table-striped table-bordered 
+																					 " id="document-item-list">
+								<thead>
+									<tr>
+										
+										<th><center>Product / Other Charges</center></th>
+										<th><center>HSN/SAC Code</center> </th>
+										<th><center>Qty.</center> </th>
+										<th> <center>Price</center> </th>
+										<th class="discount_field"><center>Disc<br>(Rs)</center> </th>
+										
+										<th><center>CGST (Rs)</center> </th>
+									
+										<th><center>SGST (Rs)</center> </th>
+										
+										<th><center>IGST (Rs)</center> </th>
+										<th><center>CESS</center> </th>
+										<th><center>Total</center></th>
+										<th><center>Action</center></th>
+										<th><center>Action</center></th>
+									</tr> 
+								</thead>
+								<tbody class="ui-sortable">
+									{% for i in prod %}
+								
+									<tr class="product-item-row">
+										
+										<td>
+											
+											<input type="text"  value="{{ i.Product_name }}" readonly = "readonly" >
+										</td>
+										<td>
+											<input type="text"  style="width:60px;"  value="{{ i.Hsn_code }}" readonly = "readonly">
+										</td>
+										<td>
+											<input type="text" style="width:50px;" value="{{ i.Qty }}" readonly = "readonly" >
+											<label class="product-quantity-available"></label>
+										</td>
+										<td>
+											<input type="text" style="width:100px;" value="{{ i.Price }}" readonly = "readonly">
+											<label class="customer_rate_label"></label>
+										</td>
+										<td class="discount_field">
+											<input type="text"  style="width:50px;" value="{{ i.Discount }}" readonly = "readonly" >
+											
+										</td>
+										<td>
+											<input type="text" style="width:30px;" value="{{ i.Cgst }}" readonly = "readonly" >
+										</td>
+										
+										<td>
+											<input type="text" style="width:30px;" value="{{ i.Sgst }}" readonly = "readonly" >
+										</td>
+									
+										<td>
+											<input type="text" style="width:30px;" value="{{ i.Igst }}" readonly = "readonly" >
+										</td>
+									
+										<td>
+											<input type="text" value="{{ i.Cess }}" style="width:40px;" readonly = "readonly"><br>
+											
+											
+										</td>
+										<td style="width:90px;">
+											<center>
+												<input type="text" class="line_total" style="width:80px;" value="{{ i.Total }}" readonly = "readonly">
+											</center>
+										</td>
+										<td>
+											<center>
+												<a href="{% url 'ProdUp' i.id %}" class="btn btn-primary btnadd-product-line btnadd-row-item">Update</a></center>
+											</td><td><center>
+												<a href="{% url 'ProdDel' i.id %}" class="btn btn-danger btnremove-product-line btnremove-row-item" >Delete</a>
+												</center></td>
+										
+									</tr>
+									{% endfor %}
+								</tbody>
+									
+							
+							</table>
+							
+							
+							<br>
+							
+							<div class="row">
+							<div class="span6 span-xs-12  span-md-6 span-sm-6">
+							
+								<div class="control-group" id="due_date">											
+									<label for="check" class="control-label">Due Date</label>
+									<div class="controls">
+										<input placeholder="dd/mm/yy"  type="text"  value="{{ invo.Due_date }}" readonly = "readonly">
+									</div> <!-- /controls -->				
+								</div> <!-- /control-group -->
+								
+								<div class="control-group">	
+									<label for="Bank" class="control-label">Bank</label>
+									<div class="controls">
+										<input type="text" value="{{ invo.Bank }}" readonly = "readonly">
+									</div> <!-- /controls -->				
+								</div> <!-- /control-group -->
+								
+								<div class="control-group">	
+								
+									
+									<label for="payment" class="control-label">Payment Type</label>
+									<div class="controls">
+										<input type="text" value="{{ invo.Payment_type }}" readonly = "readonly">
+																			</div> <!-- /controls -->				
+																	</div> <!-- /control-group -->
+							
+								<div class="control-group" id="check_no">											
+									<label for="check" class="control-label">Payment Note</label>
+									<div class="controls">
+										<textarea readonly = "readonly">{{ invo.Payment_note }}</textarea>  
+									</div> <!-- /controls -->				
+								</div> <!-- /control-group -->
+								
+								
+								<div class="control-group">			
+									<label for="Address" class="control-label">Terms &amp; Condition</label>
+									<div class="controls">
+									<textarea readonly = "readonly">{{ invo.T_c }}</textarea>
+																			</div><!-- /controls -->				
+								</div>
+								
+							</div>
+							
+							<div class="span6 span-xs-12  span-md-6 span-sm-6">
+								<div class="control-group">											
+									<label for="document_note" class="control-label">Document Note / Remarks<span class="note" style="display:block;">Not Visible on Print</span></label>
+									<div class="controls">
+										<textarea readonly = "readonly">{{ invo.Document_note }}</textarea>  
+									</div> <!-- /controls -->				
+								</div>
+								<div class="action-btn-container">
+									<input type="hidden" name="hidden_submit_form_data" id="hidden_submit_form_data" value="yes">
+									<a href="{% url 'generatepdf' invo.id %}"
+                                    target="_blank"
+                                    class="btn btn-primary">
+
+                                    <i class="fa fa-print"></i> Print
+                                    </a>
+                                     
+									<a href="{% url 'generateqr' invo.id %}"
+   class="btn btn-success">
+
+    <i class="fa fa-qrcode"></i> Generate QR Code
+</a>
+
+{% if invo.qrcode %}
+    <div style="text-align:center; margin-top:20px;">
+        <h4>Invoice QR Code</h4>
+
+        <img src="{{ invo.qrcode.url }}"
+             width="150"
+             height="150">
+
+        <p>Scan to view invoice</p>
+    </div>
+{% endif %}
+									<input type ="text" style="float:right;margin-top:10px; margin-right:10px;" value="{{ tot }}" readonly = "readonly">
+									<h2 style="float: right;margin-top: 10px;margin-right: 10px;">Grand Total:</h2>
+								</div><!--/save&&saveandpdf -->
+							</div>
+							</div>
+						</div><!---widget content terminated -->
+					</div><!--span12  terminated -->
+					</div>
+				</form><!--form terminated-->
+			</div><!--row terminated -->
+		</div><!---widget content terminated -->
+	</div><!--span12 terminated -->
+</div>
+
+{% endblock %}

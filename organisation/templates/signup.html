@@ -1,0 +1,689 @@
+{% load static %}
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Signup - Advance Billing System</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="{% static 'signupcss/bootstrap.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'signupcss/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'signupcss/bootstrap-responsive.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'signupcss/font-awesome.css' %}" rel="stylesheet">
+	<link href="{% static 'signupcss/cmxform.css' %}" rel="stylesheet">
+	<link href="{% static 'signupcss/OpenSans.css' %} " rel="stylesheet">
+	<link href="{% static 'signupcss/style.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'signupcss/signin.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'signupcss/custom.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'signupcss/Custom-Responsive.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'signupcss/select2.min.css' %}" rel="stylesheet" type="text/css">
+
+	<script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="{% static 'signupjs/jquery-1.7.2.min.js' %}"></script>
+	<script src="{% static 'signupjs/general.js' %}"></script>
+	<script src="{% static 'signupjs/bootstrap.js' %}"></script>
+	<script src="{% static 'signupjs/jquery.validate.js' %}"></script>
+	<script src="{% static 'signupjs/select2.full.min.js' %}"></script>
+</head>
+
+<body class="responsive-page">
+<style>
+.floating-highlight-contact.hidden-floating-highlight-contact {
+    background: #fff;
+    color: #00ba8b;
+    padding: 0;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.2);
+	display: none;
+	width: 330px;
+}
+.floating-highlight-contact.hidden-floating-highlight-contact .supportheader {
+    background: #00ba8b;
+    padding: 10px 10px;
+    text-align: left;
+    color: #fff;
+}
+.floating-highlight-contact.hidden-floating-highlight-contact .supportheader i{
+    cursor: pointer;
+}
+.floating-highlight-contact.hidden-floating-highlight-contact form{
+   padding: 10px;
+   margin: 0;
+   position: relative;
+}
+.floating-highlight-contact.hidden-floating-highlight-contact form input{
+    display: inline-block;
+	width: 100%;
+	box-sizing: border-box;
+	height: auto;
+	padding: 10px;
+	margin-bottom: 0;
+}
+.floating-highlight-contact.hidden-floating-highlight-contact form button{
+    position: absolute;
+	border: none;
+	right: 10px;
+	top: 10px;
+	background: no-repeat;
+	height: 40px;
+	width: 40px;
+	text-align: center;
+	color: #939393;
+	cursor: pointer;
+}
+.suppport-list-box{
+	padding: 0px 10px 10px 10px;
+	display: inline-block;
+	width: 100%;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.suppport-list-box .suppport-list {
+    margin: 0;
+}
+.suppport-list-box .suppport-list li {
+    list-style: none;
+    text-align: left;
+    font-size: 13px;
+    font-weight: normal;
+    color: #4A4A4A;
+    margin-bottom: 7px;
+	position: relative;
+	padding-left: 20px;
+}
+.suppport-list-box .suppport-list li:before {
+    
+    content: "";
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    background-repeat: no-repeat;
+	left: 0px;
+	top: 2px;
+}
+.suppport-list-box .suppport-list li a{
+	color: #4A4A4A;
+	text-decoration: none;
+}
+.suppport-list-box .view-more-btn {
+	float: right;
+	font-size: 13px;
+	font-weight: normal;
+	text-decoration: underline;
+	background: #19bc9c;
+	color: #fff;
+	padding: 2px 10px;
+	text-decoration: none;
+	border-radius: 13px;
+	font-size: 15px;
+	-webkit-transition: all 300ms ease;
+	-moz-transition: all 300ms ease;
+	-o-transition: all 300ms ease;
+	transition: all 300ms ease;
+}
+.suppport-list-box .view-more-btn:hover {
+	background: #09ac8c;
+}
+.floating-highlight-contact{
+	font-size: 17px;
+	font-weight: bold;
+	border-radius: 5px;
+	bottom:15px;
+}
+.contact-info{
+	padding: 0px 10px 10px 10px;
+	display: inline-block;
+	width: 100%;
+	box-sizing: border-box;
+}
+.contact-info .seprator{
+	height: 1px;
+	background: #EFEFEF;
+	margin-bottom: 20px;
+	margin-top: 10px;
+}
+.phone-box{
+	color: #7B7B7B;
+	text-align: left;
+	float: left;
+	width: 100%;
+	text-align: center;
+}
+.phone-box i {
+    margin-right: 7px;
+    font-size: 17px;
+}
+.phone-box a:hover{
+	background: #09ac8c;
+}
+.phone-box a{
+	background: #19bc9c;
+	color: #fff;
+	border-radius: 25px;
+	padding: 8px 20px;
+	display: inline-block;
+	font-size: 14px;
+	letter-spacing: 0.1px;
+	text-decoration: none;
+	-webkit-transition: all 300ms ease;
+	-moz-transition: all 300ms ease;
+	-o-transition: all 300ms ease;
+	transition: all 300ms ease;
+}
+.phone-box p{
+	font-style: italic;
+	display: inline-block;
+	margin: 5px 0;
+}
+.email-box{
+	color: #7B7B7B;
+	font-size: 20px;
+	display: inline-block;
+	margin: 4px 0;
+	text-align: left;
+	float: left;
+	width: 100%;
+	text-align: center;
+}
+.email-box i{
+	margin-right: 6px;
+    font-size: 16px;
+}
+.email-box a:hover {
+	background: #A29F9A;
+}
+.email-box a{
+	background: #B2AFAA;
+	color: #fff;
+	border-radius: 25px;
+	padding: 8px 20px;
+	display: inline-block;
+	font-size: 15px;
+	letter-spacing: 0.5px;
+	text-decoration: none;
+	-webkit-transition: all 300ms ease;
+	-moz-transition: all 300ms ease;
+	-o-transition: all 300ms ease;
+	transition: all 300ms ease;
+}
+</style>
+	
+<script>
+	jQuery(".supportheader .fa-close").click(function(){
+		var visible = jQuery(".visible-floating-highlight-contact");
+		var hidden = jQuery(".hidden-floating-highlight-contact");
+		hidden.fadeToggle(500,function(){visible.fadeToggle(500)});
+	});
+	jQuery(".visible-floating-highlight-contact").click(function(){
+		var visible = jQuery(".visible-floating-highlight-contact");
+		var hidden = jQuery(".hidden-floating-highlight-contact");
+		visible.fadeToggle(500,function(){hidden.fadeToggle(500)});
+	});
+</script>
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55723272-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<div class="navbar navbar-fixed-top">
+
+	<div class="navbar-inner">
+
+		<div class="container">
+
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+
+			<a class="brand" href="{% url 'login' %}">
+				<h2>Advance Billing System</h2>
+			</a>
+
+			<div class="nav-collapse">
+				<ul class="nav pull-right">
+					<li class="">
+						<a href="{% url 'login' %}" class="topmainbutton">
+							Login
+						</a>
+					</li>
+				</ul>
+
+			</div><!--/.nav-collapse -->
+
+		</div> <!-- /container -->
+
+	</div> <!-- /navbar-inner -->
+
+</div> <!-- /navbar -->
+<br><br>
+<center><h2>Create Your Free Account</h2></center>
+<br><br>
+<div class="container">
+
+
+<div class="signup-container">
+
+	<div class="clearfix">
+
+		<form action="" id="signupform" method="POST" novalidate="novalidate">
+			{% csrf_token %}
+			<fieldset>
+
+				<div class="row">
+				<div class="col-lg-12">
+
+				<h3>Organisation Details
+				<em style="float: right; font-size: 13px; font-weight: normal;"><span style="color:red;">*</span> Indicates required field</em>
+				</h3>
+				<hr>
+				</div>
+					
+					<div class="col-lg-4 col-sm-12">
+				<div class="control-group">
+					<label for="Org Name" class="control-label">Your Company Name*</label>
+					<div class="controls" name='cn'>
+						{{ org.company_name }}
+					</div> <!-- /controls -->
+				</div> <!-- /control-group -->
+				</div>
+
+				<div class="col-lg-4 col-sm-12">
+				<div class="control-group">
+					<label for="org type" class="control-label">Your Company Type*</label>
+					<div class="controls">
+						
+						<select aria-valuetext="{{org.company_type}}">
+								<option value="">Your Company Type</option>
+								<option value="Proprietorship">Proprietorship</option>
+								<option value="Partnership">Partnership</option>
+								<option value="Hindu Undivided Family">Hindu Undivided Family</option>
+								<option value="Private Limited Company">Private Limited Company</option>
+								<option value="Public Limited Company">Public Limited Company</option>
+								<option value="Society/ Club/ Trust/ AOP">Society/ Club/ Trust/ AOP</option>
+								<option value="Government Department">Government Department</option>
+								<option value="Public Sector Undertaking">Public Sector Undertaking</option>
+								<option value="Unlimited Company">Unlimited Company</option>
+								<option value="Limited Liability Partnership">Limited Liability Partnership</option>
+								<option value="Local Authority">Local Authority</option>
+								<option value="Statutory Body">Statutory Body</option>
+								<option value="Foreign Company">Foreign Company</option>
+								<option value="Foreign Limited Liability Partnership">Foreign Limited Liability Partnership</option>
+								<option value="Others">Others</option>
+							</select>
+					</div> <!-- /controls -->
+				</div> <!-- /control-group -->
+				</div>
+
+				<div class="col-lg-4 col-sm-12">
+				<div class="control-group">
+					<label for="Pan Card" class="control-label">PAN Number*</label>
+					<div class="controls">
+						{{org.pan_number}}
+					</div> <!-- /controls -->
+				</div> <!-- /control-group -->
+				</div>
+
+				<div class="col-lg-4 col-sm-12">
+				<div class="control-group">
+					<label for="GST No" class="control-label">GSTIN*</label>
+					<div class="controls">
+						{{org.gstin_number}}
+					</div> <!-- /controls -->
+				</div> <!-- /control-group -->
+				</div>
+
+				<div class="col-lg-4 col-sm-12">
+				<div class="control-group">
+					<label for="Address" class="control-label">Address Line 1*</label>
+					<div class="controls">
+						{{org.address_1}}
+					</div> <!-- /controls -->
+				</div> <!-- /control-group -->
+				</div>
+
+				<div class="col-lg-4 col-sm-12">
+				<div class="control-group">
+					<label for="Address2" class="control-label">Address Line 2</label>
+					<div class="controls">
+						{{org.address_2}}
+					</div> <!-- /controls -->
+				</div> <!-- /control-group -->
+				</div>
+
+				<div class="col-lg-4 col-sm-12">
+				<div class="control-group">
+					<label for="State" class="control-label">State*</label>
+					<div class="controls">
+							<select aria-valuetext="{{ org.state }}">
+									<option value="0">Select State</option>
+									<option value="Andaman & Nicobar">Andaman & Nicobar</option>
+									<option value="Andhra Pradesh">Andhra Pradesh</option>
+									<option value="Arunachal Pradesh">Arunachal Pradesh</option>
+									<option value="Assam">Assam</option>
+									<option value="Bihar">Bihar</option>
+									<option value="Chandigarh">Chandigarh</option>
+									<option value="Chhattisgarh">Chhattisgarh</option>
+									<option value="Dadra & Nagar Haveli">Dadra & Nagar Haveli</option>
+									<option value="Daman & Diu">Daman & Diu</option>
+									<option value="Delhi">Delhi</option>
+									<option value="Goa">Goa</option>
+									<option value="Gujarat">Gujarat</option>
+									<option value="Haryana">Haryana</option>
+									<option value="Himachal Pradesh">Himachal Pradesh</option>
+									<option value="Jammu & Kashmir">Jammu & Kashmir</option>
+									<option value="Jharkhand">Jharkhand</option>
+									<option value="Karnataka">Karnataka</option>
+									<option value="Kerala">Kerala</option>
+									<option value="Lakshadweep">Lakshadweep</option>
+									<option value="Madhya Pradesh">Madhya Pradesh</option>
+									<option value="Maharashtra">Maharashtra</option>
+									<option value="Manipur">Manipur</option>
+									<option value="Meghalaya">Meghalaya</option>
+									<option value="Mizoram">Mizoram</option>
+									<option value="Nagaland">Nagaland</option>
+									<option value="Orissa">Orissa</option>
+									<option value="Pondicherry">Pondicherry</option>
+									<option value="Punjab">Punjab</option>
+									<option value="Rajasthan">Rajasthan</option>
+									<option value="Sikkim">Sikkim</option>
+									<option value="Tamil Nadu">Tamil Nadu</option>
+									<option value="Tripura">Tripura</option>
+									<option value="Uttar Pradesh">Uttar Pradesh</option>
+									<option value="Uttaranchal">Uttaranchal</option>
+									<option value="West Bengal">West Bengal</option>
+								  </select> 
+					</div> <!-- /controls -->
+				</div> <!-- /control-group -->
+				</div>
+
+				<div class="col-lg-4 col-sm-12">
+				<div class="control-group">
+					<label for="City" class="control-label">City*</label>
+					<div class="controls">
+						{{org.city}}
+					</div> <!-- /controls -->
+				</div> <!-- /control-group -->
+				</div>
+
+				<div class="col-lg-4 col-sm-12">
+				<div class="control-group">
+					<label for="PinCode" class="control-label">PinCode*</label>
+					<div class="controls">
+							<div class="NumberInput">
+						{{org.pincode}}
+						</div>
+					</div> <!-- /controls -->
+				</div> <!-- /control-group -->
+				</div>
+
+				</div>
+				<br>
+				<div class="row">
+				<div class="col-lg-12">
+				<h3>Contact Details</h3>
+				<hr>
+				</div>
+
+
+				<div class="col-lg-4 col-sm-12">
+				<div class="control-group">
+					<label for="Name" class="control-label">Full Name*</label>
+					<div class="controls">
+						{{org.full_name}}
+					</div> <!-- /controls -->
+				</div> <!-- /control-group -->
+				</div>
+
+				<div class="col-lg-4 col-sm-12">
+				<div class="control-group">
+					<label for="Phone" class="control-label">Phone*</label>
+					<div class="controls">
+						<div class="NumberInput">
+						{{org.phone}}</div>
+					</div> <!-- /controls -->
+				</div> <!-- /control-group -->
+				</div>
+
+				<div class="col-lg-4 col-sm-12">
+				<div class="control-group">
+					<label for="Email" class="control-label">Email*</label>
+					<div class="controls">
+						{{org.email}}
+					</div> <!-- /controls -->
+					<span style="font-style: italic;color: #d14836;">(Please enter correct email)</span>
+				</div> <!-- /control-group -->
+				</div>
+
+				</div>
+
+				<br>
+
+				<div class="row">
+				<div class="col-lg-12">
+				<h3>Login Details</h3>
+				<hr>
+				</div>
+
+				<div class="col-lg-4 col-sm-12">
+				<div class="control-group">
+					<label for="firstname" class="control-label">User ID* <span style="font-style: italic;color: #d14836;">(Username Must Be Strong)</span></label>
+					<div class="controls">
+						{{org.user_id}}
+
+					<input type="hidden" name="hidden_userid" id="hidden_userid" value="" required="" aria-required="true">
+
+
+				<div id="status"></div>
+
+					</div> <!-- /controls -->
+				</div> <!-- /control-group -->
+				</div>
+
+				<div class="col-lg-4 col-sm-12">
+				<div class="control-group">
+					<label for="Password" class="control-label">Password*</label>
+					<div class="controls">
+						{{org.password_1}}
+					</div> <!-- /controls -->
+				</div> <!-- /control-group -->
+				</div>
+
+				<div class="col-lg-4 col-sm-12">
+				<div class="control-group">
+					<label for="Confirm Password" class="control-label">Confirm Password*</label>
+					<div class="controls">
+						{{org.password_2}}
+					</div> <!-- /controls -->
+				</div> <!-- /control-group -->
+				</div>
+
+				</div>
+
+				<div class="row">
+				<div class="col-lg-12">
+				<div class="login-actions">
+
+					<!-- <button class="button btn btn-primary btn-large" name="btnsubmit" type="submit">Register</button> -->
+					<input type="submit" class="button btn btn-primary btn-large" name="btnsubmit" value="Register">
+				</div> <!-- .actions -->
+				</div>
+				</div>
+
+			</fieldset>
+		</org>
+		<!-- <br><center style="font-size: 14px;font-weight: bold;margin-top: 10px;"><a href="//gogstbill.com">← Back to GoGSTBill.Com</a></center> -->
+	</div> <!-- /content -->
+
+</div> <!-- /account-container -->
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$(".NumberInput").forceNumeric();
+	});
+   
+	// forceNumeric() plug-in implementation
+	jQuery.fn.forceNumeric = function () {
+		return this.each(function () {
+			$(this).keydown(function (e) {
+				var key = e.which || e.keyCode;
+   
+				if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
+				// numbers   
+					key >= 48 && key <= 57 ||
+				// Numeric keypad
+					key >= 96 && key <= 105 ||
+				// comma, period and minus, . on keypad
+				   key == 190 || key == 188 || key == 109 || key == 110 ||
+				// Backspace and Tab and Enter
+				   key == 8 || key == 9 || key == 13 ||
+				// Home and End
+				   key == 35 || key == 36 ||
+				// left and right arrows
+				   key == 37 || key == 39 ||
+				// Del and Ins
+				   key == 46 || key == 45)
+					return true;
+   
+				return false;
+			});
+		});
+	}
+   </script>
+<script>
+
+$(document).ready(function() {
+
+	$.validator.addMethod("alphanumeric", function(value, element) {
+        return this.optional(element) || /^[a-zA-Z0-9]+$/i.test(value);
+    },);
+
+	$( "#signupform" ).validate({
+	 ignore: [],
+	rules: {
+		field: {required: true},
+		orgtype: {required: true},
+		state: {required: true},
+		password: {	required: true},
+		cnfpassword: {equalTo: "#password"},
+		
+	},
+	messages: {
+		orgname: "Please enter your organisation name",
+		orgtype:"Please select your organisation type",
+		pancard: "Please enter your PAN number",
+		gstno: "Please enter your GSTIN no",
+		address: "Please enter your address",
+		state: "Please enter your state name",
+		city: "Please enter your city name",
+		pincode: "Please enter your pincode",
+		name: "Please enter your full name",
+		phone: "Please enter your phone number",
+		email: "Please enter your email address",
+		
+		
+		},
+		password: "Please enter your password",
+		cnfpassword: {
+			required: "Please enter confirm password",
+			equalTo: "password and confirm password does not match"
+		},
+
+	}
+	});
+
+	jQuery('#gstno').keyup(function() {
+		$(this).val($(this).val().toUpperCase());
+	});
+	jQuery('#pancard').keyup(function() {
+		$(this).val($(this).val().toUpperCase());
+	});
+});
+
+</script>
+
+
+
+<script type="text/javascript">
+
+/*
+Credits: Bit Repository
+Source: http://www.bitrepository.com/web-programming/ajax/username-checker.html
+*/
+
+pic1 = new Image(16, 16);
+pic1.src="img/loader.gif";
+
+$(document).ready(function(){
+
+	$("#username").change(function() {
+
+		$("#status").html('');
+		if($( "#signupform [name='userid']" ).valid())
+		{
+			var usr = $("#username").val();
+
+			if(usr.length >= 4)
+			{
+			$("#status").html('<img src="img/loader.gif" align="absmiddle">&nbsp;Checking availability...');
+				var data = {
+					action: 'checkusername',
+					username: usr
+				}
+
+				$.ajax({
+				type: "POST",
+				url: "ajaxcall.php",
+				ContentType : 'application/json',
+				dataType: 'json',
+				data: data,
+				success: function(data){
+					if(data.status == 'UNUSED')
+					{
+						$("#username").removeClass('object_error'); // if necessary
+						$("#status").html('&nbsp;<img src="img/tick.gif" align="absmiddle">');
+						$('#hidden_userid').val("ok");
+					}
+					else if (data.status == 'USED')
+					{
+						$("#username").addClass("object_error");
+						$("#status").html('<font color="red">User ID is already in use, please try different User ID</font>');
+						$('#hidden_userid').val('');
+					} else{
+						$("#status").html('Error! Please try again.');
+					}
+				},
+				error: function(data){
+				},
+				complete: function(data){
+				}
+
+			});
+
+			}else {
+				$("#username").removeClass('object_ok'); // if necessary
+				$("#username").addClass("object_error");
+				$('#status').html('');
+				$('#hidden_userid').val('');
+			}
+		}else {
+				$("#username").removeClass('object_ok'); // if necessary
+				$("#username").addClass("object_error");
+				$('#status').html('');
+				$('#hidden_userid').val('');
+			}
+	});
+});
+
+//-->
+
+
+
+</script>
+
+</body></html>

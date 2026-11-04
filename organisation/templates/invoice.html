@@ -1,0 +1,580 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="POST">
+	{% csrf_token %}
+<div class="row">
+	<div class="span12">
+				<div class="widget widget-create-document">
+			<div class="widget-header"> <i class="fa fa-pencil"></i>
+				<h3>INVOICE</h3>
+			</div>
+            <div class="widget-content">
+				<form class="form-horizontal" method="post" action="" id="product_invoice_form" novalidate="novalidate">
+				<div class="row">
+					<div class="span5  span-md-5 span-xs-12 span-sm-12"><!-- CompanyDetails-->
+						<div class="widget-header"> <i class="fa fa-th-list"></i><!-- CompanyDetailsHeder -->
+							<h3>Customer Information</h3>
+						</div>
+						<div class="widget-content customer-information-invoice"><!-- /CompanyDetailsContent-->
+												<a href="{% url 'customerform' %}" class="btn btn-primary btn-small add_customer_modal_button">Add New Customer</a>
+								
+						
+							<div class="control-group">
+								<select name="cust_name">
+									{% for i in cust_data %}
+										<option value="{{ i.cust_name }}">{{ i.cust_name }}</option>
+									{% endfor %}
+								</select>
+							
+							</div>
+							<div class="control-group">
+								<label for="firstname" class="control-label">ADDRESS</label>
+								<div class="controls cmp">
+									<textarea name="address" id="address" rows="2" cols="2" readonly="true">									</textarea>
+								</div> <!--/address-->
+							
+							</div>
+							<div class="control-group ">
+								<label for="firstname" class="control-label ">PHONE NO</label>
+								<div class="controls cmp">
+									<label name="phoneno" id="phone" for="phonenumber" class="control-labe2"></label>
+									<input type="text" name="hphone" id="hphone">
+								</div> <!-- /cst no -->
+
+							</div> <!-- control group -->
+							
+							<div class="control-group">
+									
+								<div class="controls cmp" id="companyshippinh">
+									
+								</div> <!-- /cst no -->
+							</div> <!-- control group -->
+							
+							<div id="shipping_detail_drawer" class="">
+								<div class="control-group ">
+									<label for="firstname" class="control-label ">SHIP. NAME</label>
+									<div class="controls cmp">
+										<input type="text" value="" name="shippingName" id="shippingName" placeholder="Enter Shipping Name" maxlength="100">
+									</div> <!-- /cst no -->
+								</div> <!-- control group -->
+								<div class="control-group">
+									<label for="shippingAddress" class="control-label">SHIP. ADD.</label>
+									<div class="controls cmp">
+										<textarea name="shippingAddress" id="shippingAddress" rows="3" cols="2" placeholder="Enter Shipping Address" maxlength="500"></textarea>
+									</div> <!--/address-->
+								
+								</div>
+								<div class="control-group ">
+									<label for="firstname" class="control-label ">SHIP. PHONE</label>
+									<div class="controls cmp">
+										<input type="text" value="" name="shippingPhone" id="shippingPhone" placeholder="Enter Shipping Phone" maxlength="30">
+									</div> <!-- /cst no -->
+								</div> <!-- control group -->
+								<div class="control-group ">
+									<label for="firstname" class="control-label ">SHIP. State</label>
+									<div class="controls cmp">
+																					<select type="list" data-value="" name="shippingState" class="" id="listBox1"><option value="">Select State</option><option value="Andaman and Nicobar">Andaman and Nicobar ( 35 )</option><option value="Andhra Pradesh">Andhra Pradesh ( 28 )</option><option value="Andhra Pradesh (New)">Andhra Pradesh (New) ( 37 )</option><option value="Arunachal Pradesh">Arunachal Pradesh ( 12 )</option><option value="Assam">Assam ( 18 )</option><option value="Bihar">Bihar ( 10 )</option><option value="Chandigarh">Chandigarh ( 04 )</option><option value="Chhattisgarh">Chhattisgarh ( 22 )</option><option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli ( 26 )</option><option value="Daman and Diu">Daman and Diu ( 25 )</option><option value="Delhi">Delhi ( 07 )</option><option value="Goa">Goa ( 30 )</option><option value="Gujarat">Gujarat ( 24 )</option><option value="Haryana">Haryana ( 06 )</option><option value="Himachal Pradesh">Himachal Pradesh ( 02 )</option><option value="Jammu and Kashmir">Jammu and Kashmir ( 01 )</option><option value="Jharkhand">Jharkhand ( 20 )</option><option value="Karnataka">Karnataka ( 29 )</option><option value="Kerala">Kerala ( 32 )</option><option value="Lakshadweep Islands">Lakshadweep Islands ( 31 )</option><option value="Madhya Pradesh">Madhya Pradesh ( 23 )</option><option value="Maharashtra">Maharashtra ( 27 )</option><option value="Manipur">Manipur ( 14 )</option><option value="Meghalaya">Meghalaya ( 17 )</option><option value="Mizoram">Mizoram ( 15 )</option><option value="Nagaland">Nagaland ( 13 )</option><option value="Orissa">Orissa ( 21 )</option><option value="Puducherry">Puducherry ( 34 )</option><option value="Punjab">Punjab ( 03 )</option><option value="Rajasthan">Rajasthan ( 08 )</option><option value="Sikkim">Sikkim ( 11 )</option><option value="Tamil Nadu">Tamil Nadu ( 33 )</option><option value="Telangana">Telangana ( 36 )</option><option value="Tripura">Tripura ( 16 )</option><option value="Uttar Pradesh">Uttar Pradesh ( 09 )</option><option value="Uttarakhand">Uttarakhand ( 05 )</option><option value="West Bengal">West Bengal ( 19 )</option></select>
+											<input type="text" name="shippingStatex" id="newState1" placeholder="Enter State" value="" class="span4 hide">
+																			</div> <!-- /cst no -->
+								</div> <!-- control group -->
+								<div class="control-group ">
+									<label for="firstname" class="control-label ">SHIP. Country</label>
+									<div class="controls cmp">
+																					<select type="list" onchange="selct_state_option(this.value,&quot;listBox1&quot;,&quot;newState1&quot;,&quot;shippingState&quot;)" data-value="India" name="shippingCountry" class="" id="listBoxCountry1"><option value="Afghanistan">Afghanistan</option><option value="Albania">Albania</option><option value="Algeria">Algeria</option><option value="Andorra">Andorra</option><option value="Angola">Angola</option><option value="Antigua and Barbuda">Antigua and Barbuda</option><option value="Argentina">Argentina</option><option value="Armenia">Armenia</option><option value="Australia">Australia</option><option value="Austria">Austria</option><option value="Azerbaijan">Azerbaijan</option><option value="Bahamas">Bahamas</option><option value="Bahrain">Bahrain</option><option value="Bangladesh">Bangladesh</option><option value="Barbados">Barbados</option><option value="Belarus">Belarus</option><option value="Belgium">Belgium</option><option value="Belize">Belize</option><option value="Benin">Benin</option><option value="Bhtan">Bhtan</option><option value="Bolivia">Bolivia</option><option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option><option value="Botswana">Botswana</option><option value="Brazil">Brazil</option><option value="Brunei">Brunei</option><option value="Bulgaria">Bulgaria</option><option value="Burkina Faso">Burkina Faso</option><option value="Burundi">Burundi</option><option value="Cabo Verde">Cabo Verde</option><option value="Cambodia">Cambodia</option><option value="Cameroon">Cameroon</option><option value="Canada">Canada</option><option value="Central African Republic (CAR)">Central African Republic (CAR)</option><option value="Chad">Chad</option><option value="Chile">Chile</option><option value="China">China</option><option value="Colombia">Colombia</option><option value="Comoros">Comoros</option><option value="Democratic Republic of the Congo">Democratic Republic of the Congo</option><option value="Republic of the Congo">Republic of the Congo</option><option value="Costa Rica">Costa Rica</option><option value="Cote d'Ivoire">Cote d'Ivoire</option><option value="Croatia">Croatia</option><option value="Cuba">Cuba</option><option value="Cyprus">Cyprus</option><option value="Czech Republic">Czech Republic</option><option value="Denmark">Denmark</option><option value="Djibouti">Djibouti</option><option value="Dominica">Dominica</option><option value="DominicanRepublic">DominicanRepublic</option><option value="Ecuador">Ecuador</option><option value="Egypt">Egypt</option><option value="El Salvador">El Salvador</option><option value="Equatorial Guinea">Equatorial Guinea</option><option value="Eritrea">Eritrea</option><option value="Estonia">Estonia</option><option value="Ethiopia">Ethiopia</option><option value="Fiji">Fiji</option><option value="Finland">Finland</option><option value="France">France</option><option value="Gabon">Gabon</option><option value="Gambia">Gambia</option><option value="Georgia">Georgia</option><option value="Germany">Germany</option><option value="Ghana">Ghana</option><option value="Greece">Greece</option><option value="Grenada">Grenada</option><option value="Guatemala">Guatemala</option><option value="Guinea">Guinea</option><option value="uinea-Bissau">uinea-Bissau</option><option value="Guyana">Guyana</option><option value="Haiti">Haiti</option><option value="Honduras">Honduras</option><option value="Hungary">Hungary</option><option value="Iceland">Iceland</option><option value="India">India</option><option value="Indonesia">Indonesia</option><option value="Iran">Iran</option><option value="Iraq">Iraq</option><option value="Ireland">Ireland</option><option value="Israel">Israel</option><option value="Italy">Italy</option><option value="Jamaica">Jamaica</option><option value="Japan">Japan</option><option value="Jordan">Jordan</option><option value="azakhstan">azakhstan</option><option value="Kenya">Kenya</option><option value="Kiribati">Kiribati</option><option value="Kosovo">Kosovo</option><option value="Kuwait">Kuwait</option><option value="Kyrgyzstan">Kyrgyzstan</option><option value="Laos">Laos</option><option value="Latvia">Latvia</option><option value="Lebanon">Lebanon</option><option value="Lesotho">Lesotho</option><option value="Liberia">Liberia</option><option value="Libya">Libya</option><option value="Liechtenstein">Liechtenstein</option><option value="Lithuania">Lithuania</option><option value="Luxemborg">Luxemborg</option><option value="Macedonia (FYROM)">Macedonia (FYROM)</option><option value="Madagascar">Madagascar</option><option value="Malawi">Malawi</option><option value="Malaysia">Malaysia</option><option value="Maldives">Maldives</option><option value="Mali">Mali</option><option value="Malta">Malta</option><option value="Marshall Islands">Marshall Islands</option><option value="Mauritania">Mauritania</option><option value="Mauritius">Mauritius</option><option value="Mexico">Mexico</option><option value="Micronesia">Micronesia</option><option value="Moldova">Moldova</option><option value="Monaco">Monaco</option><option value="Mongolia">Mongolia</option><option value="Montenegro">Montenegro</option><option value="Morocco">Morocco</option><option value="Mozambique">Mozambique</option><option value="Myanmar (Burma)">Myanmar (Burma)</option><option value="Namibia">Namibia</option><option value="Nauru">Nauru</option><option value="Nepal">Nepal</option><option value="Netherlands">Netherlands</option><option value="New Zealand">New Zealand</option><option value="Nicaragua">Nicaragua</option><option value="Niger">Niger</option><option value="Nigeria">Nigeria</option><option value="North Korea">North Korea</option><option value="Norway">Norway</option><option value="Oman">Oman</option><option value="Pakistan">Pakistan</option><option value="Palau">Palau</option><option value="Palestine">Palestine</option><option value="Panama">Panama</option><option value="Papua New Guinea">Papua New Guinea</option><option value="Paraguay">Paraguay</option><option value="Peru">Peru</option><option value="Philippines">Philippines</option><option value="Poland">Poland</option><option value="Portugal">Portugal</option><option value="Qatar">Qatar</option><option value="Romania">Romania</option><option value="Russia">Russia</option><option value="Rwanda">Rwanda</option><option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option><option value="Saint Lucia">Saint Lucia</option><option value="Saint Vincentand the Grenadines">Saint Vincentand the Grenadines</option><option value="Samoa">Samoa</option><option value="San Marino">San Marino</option><option value="Sao Tome and Principe">Sao Tome and Principe</option><option value="Saudi Arabia">Saudi Arabia</option><option value="Senegal">Senegal</option><option value="Serbia">Serbia</option><option value="Seychelles">Seychelles</option><option value="Sierra Leone">Sierra Leone</option><option value="Singapore">Singapore</option><option value="Slovakia">Slovakia</option><option value="Slovenia">Slovenia</option><option value="Solomon Islands">Solomon Islands</option><option value="Somalia">Somalia</option><option value="South Africa">South Africa</option><option value="South Korea">South Korea</option><option value="South Sudan">South Sudan</option><option value="Spain">Spain</option><option value="Sri Lanka">Sri Lanka</option><option value="Sudan">Sudan</option><option value="Suriname">Suriname</option><option value="Swaziland">Swaziland</option><option value="Sweden">Sweden</option><option value="Switzerland">Switzerland</option><option value="Syria">Syria</option><option value="Taiwan">Taiwan</option><option value="Tajikistan">Tajikistan</option><option value="Tanzania">Tanzania</option><option value="Thailand">Thailand</option><option value="Timor-Leste">Timor-Leste</option><option value="Togo">Togo</option><option value="Tonga">Tonga</option><option value="Trinidadad Tobago">Trinidadad Tobago</option><option value="Tunisia">Tunisia</option><option value="Turkey">Turkey</option><option value="Turkmenistan">Turkmenistan</option><option value="Tuvalu">Tuvalu</option><option value="Uganda">Uganda</option><option value="Ukraine">Ukraine</option><option value="United Arab Emirates (UAE)">United Arab Emirates (UAE)</option><option value="United Kingdom (UK)">United Kingdom (UK)</option><option value="United States of America (USA)">United States of America (USA)</option><option value="Uruguay">Uruguay</option><option value="Uzbekistan">Uzbekistan</option><option value="Vanuatu">Vanuatu</option><option value="Vatican City (Holy See)">Vatican City (Holy See)</option><option value="Venezuela">Venezuela</option><option value="Vietnam">Vietnam</option><option value="Yemen">Yemen</option><option value="Zambia">Zambia</option><option value="Zimbabwe">Zimbabwe</option></select>
+																			</div> <!-- /cst no -->
+								</div> <!-- control group -->
+								<div class="control-group ">
+									<label for="firstname" class="control-label ">SHIP. GSTIN</label>
+									<div class="controls cmp">
+										<input type="text" value="" name="shippingGSTIN" id="shippingGSTIN" placeholder="Enter Shipping GSTIN" maxlength="30">
+									</div> <!-- /cst no -->
+								</div> <!-- control group -->
+							</div>
+							
+							<div class="control-group control-group-PlaceofSupply">
+								<label for="firstname" class="control-label ">Place of Supply</label>
+								<div class="controls cmp">
+									<input type="text" value="">
+								</div> <!-- /cst no -->
+							</div> <!-- control group -->
+						</div><!-- /CompanyDetailsContent-->
+					</div><!-- /CompanyDetails-->
+						
+					<div class="span7  span-md-7 span-xs-12 span-sm-12"><!-- BillingDetails -->
+							<div class="widget-header"> <i class="fa fa-th-list"></i><!-- CompanyDetailsHeader-->
+								<h3>Invoice Detail</h3>
+							</div>
+							<div class="widget-content invoice-detail-invoice"><!-- CompanyDetailsContent-->
+							
+															<div class="minibox control-group" style="float: none;">
+									<label class="control-label billing-margin-date">Invoice Type</label>
+									<div class="controls cmp">
+									<input type="text" value="">
+								
+									</select>
+									</div>
+								</div>
+															
+							<div class="minibox control-group">
+								<label class="control-label billing-margin-date">Invoice No.</label>
+								<div class="controls cmp">
+																<input placeholder="Invoice No." name="invoice_id" id="invoice_id" type="text" value="" class="text-width" onkeypress="return allowOnlyNumber(event);" required="" aria-required="true">
+																
+								</div>
+							</div><!-- bill no-->
+							
+							<div class="minibox control-group">
+								<label class="control-label billing-margin-date">DATE</label>
+								<div class="controls cmp">
+								<input placeholder="dd/mm/yy" name="bill_date" type="text" class="text-width hasDatepicker" id="datepicker_bill" value="" required="" autocomplete="off" aria-required="true">
+								</div>
+							</div><!-- date-->
+							
+							
+
+							<div class="minibox control-group" style="display:none !important;">
+								<label class="control-label billing-margin-date">DATE</label>
+								<div class="controls cmp">
+								<input placeholder="dd/mm/yy" name="challan_date" type="text" class="text-width hasDatepicker" id="datepicker_challan" value="" autocomplete="off">
+								</div>
+							</div><!-- date-->
+							<div style="clear:both;"></div>
+							
+							<div class="control-group transport-box ">
+								<label for="firstname" class="control-label ">DISPATCH THROUGH</label>
+								<div class="controls ">
+									<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input type="text" name="dispatch_through" class="transport-combobox ui-autocomplete-input" placeholder="Enter transport name" value="" maxlength="255" autocomplete="off">
+									<input value="" name="hidden-transport-id" id="hidden-transport-id" type="hidden">
+									<input value="" name="hidden-transport-name" id="hidden-transport-name" type="hidden">
+									<input value="" name="hidden-transport-transportID" id="hidden-transport-transportID" type="hidden">
+									<input value="" name="hidden-transport-vehicleno" id="hidden-transport-vehicleno" type="hidden">
+								</div> 
+								
+							</div>
+							
+							
+
+						</div><!-- CompanyDetailsContent-->
+					</div><!-- BillingDetails -->
+					<!--class="widget widget-table action-table"-->
+					
+					
+						
+					<div class="span12" style="margin-top:10px;">
+						<div class="widget-header"> <i class="fa fa-th-list"></i>
+							<h3>Product Items</h3>
+						</div>
+						<div class="widget-content">
+						
+							
+							
+							<table class="invoice-product-items-table table table-striped table-bordered 
+																					 " id="document-item-list">
+								<thead>
+									<tr>
+										<th><center>SR.</center> </th>
+										<th><center>Product / Other Charges</center></th>
+										<th><center>HSN/SAC Code</center> </th>
+										<th><center>Qty.</center> </th>
+										<th> <center>Price</center> </th>
+										<th class="discount_field"><center>Disc<br>(Rs)</center> </th>
+										<th><center>CGST (%)</center> </th>
+										<th><center>CGST (Rs)</center> </th>
+										<th><center>SGST (%)</center> </th>
+										<th><center>SGST (Rs)</center> </th>
+										<th><center>IGST (%)</center> </th>
+										<th><center>IGST (Rs)</center> </th>
+										<th><center>CESS</center> </th>
+										<th><center>Total</center></th>
+										
+									</tr> 
+								</thead>
+								<tbody class="ui-sortable">
+								
+<tr class="product-item-row">
+										<td>
+											<label class="product-item-row-number">1</label>
+										</td>
+										<td>
+											<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input class="product-combobox ui-autocomplete-input" placeholder="Enter Product name" maxlength="500" autocomplete="off">
+											<input class="hidden-item-product-id" name="hidden-item-product-id[]" type="hidden">
+											<input class="hidden-item-detail-product-id" name="hidden-item-detail-product-id[]" type="hidden">
+											<input class="hidden-item-product-name" name="hidden-item-product-name[]" type="hidden">
+											<input class="hidden-item-product-uom" name="hidden-item-product-uom[]" type="hidden">
+											<input class="hidden-item-product-is_transport" name="hidden-item-product-is_transport[]" type="hidden">
+											<input class="hidden-item-product-cgst" name="hidden-item-product-cgst[]" type="hidden">
+											<input class="hidden-item-product-sgst" name="hidden-item-product-sgst[]" type="hidden">
+											<input class="hidden-item-product-igst" name="hidden-item-product-igst[]" type="hidden">
+											
+											<input class="hidden-item-product-cess_amount" name="hidden-item-product-cess_amount[]" type="hidden">
+											<input class="hidden-item-product-att1-name" name="hidden-item-product-att1-name[]" type="hidden">
+											<input class="hidden-item-product-att1-val" name="hidden-item-product-att1-val[]" type="hidden">
+											<input class="hidden-item-product-att2-name" name="hidden-item-product-att2-name[]" type="hidden">
+											<input class="hidden-item-product-att2-val" name="hidden-item-product-att2-val[]" type="hidden">
+											<input class="hidden-item-product-att3-name" name="hidden-item-product-att3-name[]" type="hidden">
+											<input class="hidden-item-product-att3-val" name="hidden-item-product-att3-val[]" type="hidden">
+											<input class="hidden-item-product-att4-name" name="hidden-item-product-att4-name[]" type="hidden">
+											<input class="hidden-item-product-att4-val" name="hidden-item-product-att4-val[]" type="hidden">
+											
+											<textarea class="product_note" placeholder="Item Note..." name="product_note[]" maxlength="800"></textarea>
+										</td>
+										<td>
+											<input type="text" name="hsccode[]" class="hsccode" placeholder="HSN/SAC" style="width:60px;" maxlength="20">
+										</td>
+										<td>
+											<input type="text" name="quantity[]" class="quantity" onkeypress="return allowOnlyNumber(event);" placeholder="Qty." style="width:50px;" maxlength="10" data-msg="Not enough stock!">
+											<label class="product-quantity-available"></label>
+										</td>
+										<td>
+											<input type="text" name="rate[]" class="rate" onkeypress="return allowOnlyNumber(event);" placeholder="Price" style="width:100px;" maxlength="10">
+										</td>
+										<td class="discount_field">
+											<input type="text" name="disc[]" class="disc" onkeypress="return allowOnlyNumber(event);" style="width:50px;" value="0" maxlength="10">
+											<input type="hidden" name="taxable_line_value[]" class="taxable_line_value">
+										</td>
+										<td>
+											<input type="text" name="cgst[]" class="cgst" onkeypress="return allowOnlyNumber(event);" placeholder="%" style="width:30px;" maxlength="5" >
+										</td>
+										<td>
+											<input type="text" name="cgst_rate[]" class="cgst_rate" onkeypress="return allowOnlyNumber(event);" readonly="readonly" style="width:50px;" value="0">
+										</td>
+										<td>
+											<input type="text" name="sgst[]" class="sgst" onkeypress="return allowOnlyNumber(event);" placeholder="%" style="width:30px;" maxlength="5" >
+										</td>
+										<td>
+											<input type="text" name="sgst_rate[]" class="sgst_rate" onkeypress="return allowOnlyNumber(event);" readonly="readonly" style="width:50px;" value="0">
+										</td>
+										<td>
+											<input type="text" name="igst[]" class="igst" onkeypress="return allowOnlyNumber(event);" placeholder="%" style="width:30px;" maxlength="5">
+										</td>
+										<td>
+											<input type="text" name="igst_rate[]" class="igst_rate" onkeypress="return allowOnlyNumber(event);" readonly="readonly" style="width:50px;" value="0">
+										</td>
+										<td>
+											
+											
+											<input type="text" name="cess_amount[]" class="cess_amount" onkeypress="return allowOnlyNumber(event);" placeholder="Rs" style="width:40px;">
+										</td>
+										<td style="width:90px;">
+											<center>
+												<input type="text" name="line_total[]" class="line_total" placeholder="Total" style="width:80px;">
+											</center>
+										</td>
+										
+
+	</tr>
+	<tr class="product-item-row">
+		<td>
+			<label class="product-item-row-number">2</label>
+		</td>
+		<td>
+			<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input class="product-combobox ui-autocomplete-input" placeholder="Enter Product name" maxlength="500" autocomplete="off">
+			<input class="hidden-item-product-id" name="hidden-item-product-id[]" type="hidden">
+			<input class="hidden-item-detail-product-id" name="hidden-item-detail-product-id[]" type="hidden">
+			<input class="hidden-item-product-name" name="hidden-item-product-name[]" type="hidden">
+			<input class="hidden-item-product-uom" name="hidden-item-product-uom[]" type="hidden">
+			<input class="hidden-item-product-is_transport" name="hidden-item-product-is_transport[]" type="hidden">
+			<input class="hidden-item-product-cgst" name="hidden-item-product-cgst[]" type="hidden">
+			<input class="hidden-item-product-sgst" name="hidden-item-product-sgst[]" type="hidden">
+			<input class="hidden-item-product-igst" name="hidden-item-product-igst[]" type="hidden">
+
+			<input class="hidden-item-product-cess_amount" name="hidden-item-product-cess_amount[]" type="hidden">
+			<input class="hidden-item-product-att1-name" name="hidden-item-product-att1-name[]" type="hidden">
+			<input class="hidden-item-product-att1-val" name="hidden-item-product-att1-val[]" type="hidden">
+			<input class="hidden-item-product-att2-name" name="hidden-item-product-att2-name[]" type="hidden">
+			<input class="hidden-item-product-att2-val" name="hidden-item-product-att2-val[]" type="hidden">
+			<input class="hidden-item-product-att3-name" name="hidden-item-product-att3-name[]" type="hidden">
+			<input class="hidden-item-product-att3-val" name="hidden-item-product-att3-val[]" type="hidden">
+			<input class="hidden-item-product-att4-name" name="hidden-item-product-att4-name[]" type="hidden">
+			<input class="hidden-item-product-att4-val" name="hidden-item-product-att4-val[]" type="hidden">
+			
+			<textarea class="product_note" placeholder="Item Note..." name="product_note[]" maxlength="800"></textarea>
+		</td>
+		<td>
+			<input type="text" name="hsccode[]" class="hsccode" placeholder="HSN/SAC" style="width:60px;" maxlength="20">
+		</td>
+		<td>
+			<input type="text" name="quantity[]" class="quantity" onkeypress="return allowOnlyNumber(event);" placeholder="Qty." style="width:50px;" maxlength="10" data-msg="Not enough stock!">
+			<label class="product-quantity-available"></label>
+		</td>
+		<td>
+			<input type="text" name="rate[]" class="rate" onkeypress="return allowOnlyNumber(event);" placeholder="Price" style="width:100px;" maxlength="10">
+		</td>
+		<td class="discount_field">
+			<input type="text" name="disc[]" class="disc" onkeypress="return allowOnlyNumber(event);" style="width:50px;" value="0" maxlength="10">
+			<input type="hidden" name="taxable_line_value[]" class="taxable_line_value">
+		</td>
+		<td>
+			<input type="text" name="cgst[]" class="cgst" onkeypress="return allowOnlyNumber(event);" placeholder="%" style="width:30px;" maxlength="5" >
+		</td>
+		<td>
+			<input type="text" name="cgst_rate[]" class="cgst_rate" onkeypress="return allowOnlyNumber(event);" readonly="readonly" style="width:50px;" value="0">
+		</td>
+		<td>
+			<input type="text" name="sgst[]" class="sgst" onkeypress="return allowOnlyNumber(event);" placeholder="%" style="width:30px;" maxlength="5" >
+		</td>
+		<td>
+			<input type="text" name="sgst_rate[]" class="sgst_rate" onkeypress="return allowOnlyNumber(event);" readonly="readonly" style="width:50px;" value="0">
+		</td>
+		<td>
+			<input type="text" name="igst[]" class="igst" onkeypress="return allowOnlyNumber(event);" placeholder="%" style="width:30px;" maxlength="5">
+		</td>
+		<td>
+			<input type="text" name="igst_rate[]" class="igst_rate" onkeypress="return allowOnlyNumber(event);" readonly="readonly" style="width:50px;" value="0">
+		</td>
+		<td>
+			
+			<input type="text" name="cess_amount[]" class="cess_amount" onkeypress="return allowOnlyNumber(event);" placeholder="Rs" style="width:40px;">
+		</td>
+		<td style="width:90px;">
+			<center>
+				<input type="text" name="line_total[]" class="line_total" placeholder="Total" style="width:80px;">
+			</center>
+		</td>
+		
+	</tr>
+	<tr class="product-item-row">
+		<td>
+			<label class="product-item-row-number">3</label>
+		</td>
+		<td>
+			<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input class="product-combobox ui-autocomplete-input" placeholder="Enter Product name" maxlength="500" autocomplete="off">
+			<input class="hidden-item-product-id" name="hidden-item-product-id[]" type="hidden">
+			<input class="hidden-item-detail-product-id" name="hidden-item-detail-product-id[]" type="hidden">
+			<input class="hidden-item-product-name" name="hidden-item-product-name[]" type="hidden">
+			<input class="hidden-item-product-uom" name="hidden-item-product-uom[]" type="hidden">
+			<input class="hidden-item-product-is_transport" name="hidden-item-product-is_transport[]" type="hidden">
+			<input class="hidden-item-product-cgst" name="hidden-item-product-cgst[]" type="hidden">
+			<input class="hidden-item-product-sgst" name="hidden-item-product-sgst[]" type="hidden">
+			<input class="hidden-item-product-igst" name="hidden-item-product-igst[]" type="hidden">
+
+			<input class="hidden-item-product-cess_amount" name="hidden-item-product-cess_amount[]" type="hidden">
+			<input class="hidden-item-product-att1-name" name="hidden-item-product-att1-name[]" type="hidden">
+			<input class="hidden-item-product-att1-val" name="hidden-item-product-att1-val[]" type="hidden">
+			<input class="hidden-item-product-att2-name" name="hidden-item-product-att2-name[]" type="hidden">
+			<input class="hidden-item-product-att2-val" name="hidden-item-product-att2-val[]" type="hidden">
+			<input class="hidden-item-product-att3-name" name="hidden-item-product-att3-name[]" type="hidden">
+			<input class="hidden-item-product-att3-val" name="hidden-item-product-att3-val[]" type="hidden">
+			<input class="hidden-item-product-att4-name" name="hidden-item-product-att4-name[]" type="hidden">
+			<input class="hidden-item-product-att4-val" name="hidden-item-product-att4-val[]" type="hidden">
+			
+			<textarea class="product_note" placeholder="Item Note..." name="product_note[]" maxlength="800"></textarea>
+		</td>
+		<td>
+			<input type="text" name="hsccode[]" class="hsccode" placeholder="HSN/SAC" style="width:60px;" maxlength="20">
+		</td>
+		<td>
+			<input type="text" name="quantity[]" class="quantity" onkeypress="return allowOnlyNumber(event);" placeholder="Qty." style="width:50px;" maxlength="10" data-msg="Not enough stock!">
+			<label class="product-quantity-available"></label>
+		</td>
+		<td>
+			<input type="text" name="rate[]" class="rate" onkeypress="return allowOnlyNumber(event);" placeholder="Price" style="width:100px;" maxlength="10">
+		</td>
+		<td class="discount_field">
+			<input type="text" name="disc[]" class="disc" onkeypress="return allowOnlyNumber(event);" style="width:50px;" value="0" maxlength="10">
+			<input type="hidden" name="taxable_line_value[]" class="taxable_line_value">
+		</td>
+		<td>
+			<input type="text" name="cgst[]" class="cgst" onkeypress="return allowOnlyNumber(event);" placeholder="%" style="width:30px;" maxlength="5" >
+		</td>
+		<td>
+			<input type="text" name="cgst_rate[]" class="cgst_rate" onkeypress="return allowOnlyNumber(event);" readonly="readonly" style="width:50px;" value="0">
+		</td>
+		<td>
+			<input type="text" name="sgst[]" class="sgst" onkeypress="return allowOnlyNumber(event);" placeholder="%" style="width:30px;" maxlength="5" >
+		</td>
+		<td>
+			<input type="text" name="sgst_rate[]" class="sgst_rate" onkeypress="return allowOnlyNumber(event);" readonly="readonly" style="width:50px;" value="0">
+		</td>
+		<td>
+			<input type="text" name="igst[]" class="igst" onkeypress="return allowOnlyNumber(event);" placeholder="%" style="width:30px;" maxlength="5">
+		</td>
+		<td>
+			<input type="text" name="igst_rate[]" class="igst_rate" onkeypress="return allowOnlyNumber(event);" readonly="readonly" style="width:50px;" value="0">
+		</td>
+		<td>
+		
+			<input type="text" name="cess_amount[]" class="cess_amount" onkeypress="return allowOnlyNumber(event);" placeholder="Rs" style="width:40px;">
+		</td>
+		<td style="width:90px;">
+			<center>
+				<input type="text" name="line_total[]" class="line_total" placeholder="Total" style="width:80px;">
+			</center>
+		</td>
+		
+	</tr>
+
+								</tbody>
+									
+								<tfoot>
+									<tr class="all-row-totals">
+										<td colspan="3" style="text-align:right;">&nbsp; Total Inv. Val </td>
+										<td>
+											<input type="hidden" name="row_total_qty" id="row_total_qty" value="0">
+											<label type="text" name="row_total_qty_lable" id="row_total_qty_lable" class="row_total_qty_lable">0</label>
+										</td>
+										<td>
+											<input type="hidden" name="row_total_price" id="row_total_price" value="0">
+											<label type="text" name="row_total_price_lable" id="row_total_price_lable" class="row_total_price_lable">0</label>
+										</td>
+										<td class="discount_field">
+											<input type="hidden" name="row_total_disc" id="row_total_disc" value="0">
+											<label type="text" name="row_total_disc_lable" id="row_total_disc_lable" class="row_total_disc_lable">0</label>
+										</td>
+										<td></td>
+										<td>
+											<input type="hidden" name="row_total_cgst_rate" id="row_total_cgst_rate" value="0">
+											<label type="text" name="row_total_cgst_rate_lable" id="row_total_cgst_rate_lable" class="row_total_cgst_rate_lable">0</label>
+										</td>
+										<td></td>
+										<td>
+											<input type="hidden" name="row_total_sgst_rate" id="row_total_sgst_rate" value="0">
+											<label type="text" name="row_total_sgst_rate_lable" id="row_total_sgst_rate_lable" class="row_total_sgst_rate_lable">0</label>
+										</td>
+										<td></td>
+										<td>
+											<input type="hidden" name="row_total_igst_rate" id="row_total_igst_rate" value="0">
+											<label type="text" name="row_total_igst_rate_lable" id="row_total_igst_rate_lable" class="row_total_igst_rate_lable">0</label>
+										</td>
+										<td>
+											<input type="hidden" name="row_total_cess_rate" id="row_total_cess_rate" value="0">
+											<label type="text" name="row_total_cess_rate_lable" id="row_total_cess_rate_lable" class="row_total_cess_rate_lable">0</label>
+										</td>
+										<td>
+											<input type="hidden" name="row_total_total" id="row_total_total" value="0">
+											<label type="text" name="row_total_total_lable" id="row_total_total_lable" class="row_total_total_lable">0</label>
+										</td>
+									
+									</tr>
+									<tr>
+										<td colspan="6" rowspan="5"></td>
+										
+										
+									</tr>
+									<tr>
+										<td colspan="7" style="text-align:right;">
+											<label class="reverse_charge_label_text">Total Tax :</label>
+										</td>
+										<td colspan="2">
+											<div class="total-controls">
+												<input type="hidden" name="total_tax" id="total_tax" value="0">
+												<center><label type="text" name="total_tax_lable" id="total_tax_lable" class="total_tax_lable">0</label></center>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="7" style="text-align:right;">
+											Grand Total :
+										</td>
+										<td colspan="2">
+											<div class="total-controls">
+												<input type="hidden" name="grand_total" id="grand_total" value="0">
+												<center><label type="text" name="grand_total_lable" id="grand_total_lable" class="grand_total_lable">0</label></center>
+											</div>
+										</td>
+									</tr>
+																				<input type="hidden" name="subsidy_amount" id="subsidy_amount" value="">
+											<input type="hidden" name="cus_pay_grandtotal" id="cus_pay_grandtotal" value="0">
+																		</tfoot>
+							</table>
+							
+							<!-- start grandtotal -->
+							<div class="widget-content">
+								<label for="firstname" id="grandtotalwords" class="span12">ZERO RUPEES  ONLY</label>
+								<input type="hidden" name="hidden_round_off_value" id="hidden_round_off_value" value="0">
+								<input type="hidden" name="hidden_grandtotalwords" id="hidden_grandtotalwords" value="ZERO RUPEES  ONLY">
+								<input type="hidden" name="hidden_cust_pay_grandtotalwords" id="hidden_cust_pay_grandtotalwords" value="ZERO RUPEES  ONLY">
+							</div>
+							<br>
+							
+							<div class="row">
+							<div class="span6 span-xs-12  span-md-6 span-sm-6">
+							
+								<div class="control-group" id="due_date">											
+									<label for="check" class="control-label">Due Date</label>
+									<div class="controls">
+										<input placeholder="dd/mm/yy" name="due_date" data-default-due="15" type="text" class="hasDatepicker" id="datepicker_lr" value="" data-value="" autocomplete="off">
+									</div> <!-- /controls -->				
+								</div> <!-- /control-group -->
+								
+								<div class="control-group">	
+									<label for="Bank" class="control-label">Bank</label>
+									<div class="controls">
+										<input type="text" value="">
+																						
+										</select>
+									</div> <!-- /controls -->				
+								</div> <!-- /control-group -->
+								
+								<div class="control-group">	
+								
+									<input type="hidden" name="discount_in" id="discount_in" value="rupee">
+									<input type="hidden" name="discount_per_item" id="discount_per_item" value="1">
+									<input type="hidden" name="enable_inventory" id="enable_inventory" value="1">
+									
+									<label for="payment" class="control-label">Payment Type</label>
+									<div class="controls">
+																				<select name="payment" id="payment" class="" required="" aria-required="true">
+											<option value="">Select Payment Type</option>
+											<option value="CREDIT" selected="">CREDIT</option>
+											<option value="CASH">CASH</option>
+											<option value="CHECK">CHEQUE</option>
+											<option value="ONLINE">ONLINE</option>
+										</select>
+																			</div> <!-- /controls -->				
+																	</div> <!-- /control-group -->
+								<div class="control-group" id="payment_received_row" style="overflow: hidden; display: none;">											
+									<label for="check" class="control-label">Payment Received</label>
+									<div class="controls">
+										<input id="payment_received" name="payment_received" class="" maxlength="12">
+									</div> <!-- /controls -->				
+								</div> <!-- /control-group -->
+								<div class="control-group" id="check_no">											
+									<label for="check" class="control-label">Payment Note</label>
+									<div class="controls">
+										<textarea id="payment_note" name="payment_note" class="" maxlength="255"></textarea>  
+									</div> <!-- /controls -->				
+								</div> <!-- /control-group -->
+								
+								<div class="control-group sez-box hide" id="check_no" style="display: none;">											
+									<label for="check" class="control-label">Remark For Sez / Export Invoice </label>
+									<div class="controls">
+										<textarea id="remark_sez" name="remark_sez" class="" style="width:80%;" maxlength="255"></textarea>  
+									</div> <!-- /controls -->				
+								</div> <!-- /control-group -->
+								
+								<div class="control-group">			
+									<label for="Address" class="control-label">Terms &amp; Condition</label>
+									<div class="controls">
+																					<textarea name="banktc" id="banktc" class="" placeholder="Enter your terms &amp; condition">Our Responsibility Ceases as soon as goods leaves our Premises.
+Goods once sold will  taken back if it is damaged.
+Delivery Ex-Premises.</textarea>
+																			</div><!-- /controls -->				
+								</div>
+								
+							</div>
+							
+							<div class="span6 span-xs-12  span-md-6 span-sm-6">
+								<div class="control-group">											
+									<label for="document_note" class="control-label">Document Note / Remarks<span class="note" style="display:block;">Not Visible on Print</span></label>
+									<div class="controls">
+										<textarea id="document_note" name="document_note" class="" maxlength="450"></textarea>  
+									</div> <!-- /controls -->				
+								</div>
+								<div class="action-btn-container">
+									<input type="hidden" name="hidden_submit_form_data" id="hidden_submit_form_data" value="yes">
+									<button type="submit" id="save" name="save" class="btn btn-primary" style="float:right;margin-top:10px; "><i class="fa fa-save"></i>Save</button>
+									<button id="save_print" name="save_print" value="save_print" class="btn btn-primary" style="float:right;margin-top:10px; margin-right:10px;"><i class="fa fa-print"></i>Save &amp; Print</button>
+									<a href="invoicedetail.php?searchbillno=&amp;searchstartdate=&amp;searchenddate=&amp;searchtotal=&amp;searchcname=&amp;searchcproductname=&amp;sort=DESC&amp;field=id.invoice_id&amp;searchpaymenttype=&amp;page=1" class="btn" style="float: right;margin-top: 10px;margin-right: 10px;"><i class="fa fa-chevron-left"></i>Back</a>
+								</div><!--/save&&saveandpdf -->
+							</div>
+							</div>
+						</div><!---widget content terminated -->
+					</div><!--span12  terminated -->
+					</div>
+				</form><!--form terminated-->
+			</div><!--row terminated -->
+		</div><!---widget content terminated -->
+	</div><!--span12 terminated -->
+</div></form>
+{% endblock %}

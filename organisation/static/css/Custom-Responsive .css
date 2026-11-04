@@ -1,0 +1,60 @@
+@media screen and (max-width:1199px){
+body.responsive-page  .container{
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+    padding: 0 30px;
+    width: 100%;
+	}
+body.responsive-page {
+    min-height: 100%;
+    position: relative;
+	min-width:0px;
+}
+
+body.responsive-page  .footer_info {
+    margin: 30px 0 100px;
+}
+}
+
+@media screen and (max-width:991px){
+	body.responsive-page  #signupform .control-group {
+    height: auto;
+}
+.login-checkbox .choice {
+    line-height: 1.3 !important;
+}
+
+}
+@media screen and (max-width:480px){
+body.responsive-page  h3 em {
+    clear: both;
+    margin: 10px 0;
+    text-align: right;
+    width: 100%;
+}
+body.responsive-page  .signup-container {
+    padding: 15px;
+}
+body.responsive-page .row {
+    margin-left: 0;
+}
+body.responsive-page  .signup-container .btn-primary{
+ margin-top: 46px;
+    width: 100%;
+}
+
+
+@media screen and (max-width:400px){
+body.responsive-page .account-container {
+    max-width: 300px;
+    width: 100%;
+}
+
+body.responsive-page .account-container  .content {
+    padding: 15px;
+}
+
+body.responsive-page .login-fields input {
+    width: 200px;
+}
+}
