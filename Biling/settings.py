@@ -25,7 +25,7 @@ SECRET_KEY = 'wfpwg33@0%ollp69)%$7ez(g&o9cbni!28k$7hb6h-y6g%s33h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['advance-billing-system-1.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
